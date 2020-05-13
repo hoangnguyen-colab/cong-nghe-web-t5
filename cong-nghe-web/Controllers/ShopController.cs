@@ -20,7 +20,7 @@ namespace cong_nghe_web.Controllers
         }
 
         [HttpGet]
-        [Route("cate/{meta}")]
+        [Route("thuong-hieu/{url}")]
         public async Task<ActionResult> ShopCategory(string url, string sort)
         {
             ViewBag.brand = await new BrandDAO().LoadByURL(url);
