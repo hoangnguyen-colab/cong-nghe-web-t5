@@ -46,8 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SlugGenerator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SlugGenerator.2.0.2\lib\net45\SlugGenerator.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -120,6 +124,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Models\ProductModel.cs" />
     <Compile Include="Common\CustomMembershipProvider.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -135,6 +148,65 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\assets\css\animate.css" />
+    <Content Include="Areas\Admin\assets\css\bootstrap.min.css" />
+    <Content Include="Areas\Admin\assets\css\icons.css" />
+    <Content Include="Areas\Admin\assets\css\magnific-popup.css" />
+    <Content Include="Areas\Admin\assets\css\menu.css" />
+    <Content Include="Areas\Admin\assets\css\slidebars.min.css" />
+    <Content Include="Areas\Admin\assets\css\style.css" />
+    <Content Include="Areas\Admin\assets\css\theme.default.min.css" />
+    <Content Include="Areas\Admin\assets\icons\css\font-awesome.min.css" />
+    <Content Include="Areas\Admin\assets\icons\css\materialdesignicons.min.css" />
+    <Content Include="Areas\Admin\assets\icons\css\themify-icons.css" />
+    <Content Include="Areas\Admin\assets\icons\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\Admin\assets\icons\fonts\materialdesignicons-webfont.svg" />
+    <Content Include="Areas\Admin\assets\icons\fonts\themify.svg" />
+    <Content Include="Areas\Admin\assets\js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\assets\js\html5shiv.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery-3.2.1.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery-migrate.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.app.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.circliful.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.core.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.magnific-popup.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.nicescroll.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.slimscroll.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.tablesorter.min.js" />
+    <Content Include="Areas\Admin\assets\js\jquery.tablesorter.widgets.min.js" />
+    <Content Include="Areas\Admin\assets\js\modernizr.min.js" />
+    <Content Include="Areas\Admin\assets\js\popper.min.js" />
+    <Content Include="Areas\Admin\assets\js\respond.min.js" />
+    <Content Include="Areas\Admin\assets\js\slidebars.min.js" />
+    <Content Include="Areas\Admin\assets\js\sweetalert.min.js" />
+    <Content Include="Areas\Admin\assets\pages\admin\script.js" />
+    <Content Include="Areas\Admin\assets\pages\admin\style.css" />
+    <Content Include="Areas\Admin\assets\pages\jquery.xeditable.init.js" />
+    <Content Include="Areas\Admin\assets\pages\knob.init.js" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap-xeditable\css\bootstrap-editable.css" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap-xeditable\img\clear.png" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap-xeditable\img\loading.gif" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap-xeditable\js\bootstrap-editable.js" />
+    <Content Include="Areas\Admin\assets\plugins\bootstrap-xeditable\js\bootstrap-editable.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\buttons.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\buttons.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\buttons.colVis.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\buttons.html5.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\buttons.print.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\dataTables.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\dataTables.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\dataTables.buttons.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\dataTables.responsive.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\jszip.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\pdfmake.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\responsive.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\responsive.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\vfs_fonts.js" />
+    <Content Include="Areas\Admin\assets\plugins\tabledit\jquery.tabledit.js" />
+    <Content Include="Areas\Admin\assets\plugins\tiny-editable\mindmup-editabletable.js" />
+    <Content Include="Areas\Admin\assets\plugins\tiny-editable\numeric-input-example.js" />
     <Content Include="Assets\css\animate.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\bundle.css" />
@@ -299,6 +371,33 @@
     <Content Include="Assets\fonts\themify.eot" />
     <Content Include="Assets\fonts\themify.ttf" />
     <Content Include="Assets\fonts\themify.woff" />
+    <Content Include="Areas\Admin\assets\icons\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\assets\icons\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\Admin\assets\icons\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\Admin\assets\icons\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\Admin\assets\icons\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\assets\icons\fonts\materialdesignicons-webfont.eot" />
+    <Content Include="Areas\Admin\assets\icons\fonts\materialdesignicons-webfont.ttf" />
+    <Content Include="Areas\Admin\assets\icons\fonts\materialdesignicons-webfont.woff" />
+    <Content Include="Areas\Admin\assets\icons\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="Areas\Admin\assets\icons\fonts\themify.eot" />
+    <Content Include="Areas\Admin\assets\icons\fonts\themify.ttf" />
+    <Content Include="Areas\Admin\assets\icons\fonts\themify.woff" />
+    <Content Include="Areas\Admin\assets\plugins\datatables\json\scroller-demo.json" />
+    <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\BrandList.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\CreateBrand.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\CustomerList.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Order.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\OrderList.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\CreateProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\ProductDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\ProductList.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LeftBar.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -339,7 +438,9 @@
     <Content Include="Views\Shop\ShopCategory.cshtml" />
     <Content Include="Views\Shop\ShopPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Admin\assets\plugins\cropper\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

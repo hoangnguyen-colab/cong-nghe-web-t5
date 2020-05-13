@@ -38,7 +38,7 @@ namespace Models.DAO
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<int> CreateCate(BRAND cate)
+        public async Task<int> CreateBrand(BRAND cate)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Models.DAO
             }
         }
 
-        public async Task<bool> DeleteCate(int ID)
+        public async Task<bool> DeleteBrand(int ID)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace Models.DAO
             }
         }
 
-        public async Task<int> EditCate(BRAND cate, int ID)
+        public async Task<int> EditBrand(BRAND cate, int ID)
         {
             try
             {
