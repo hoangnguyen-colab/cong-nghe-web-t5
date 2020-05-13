@@ -1,0 +1,189 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href="~/Areas/Admin/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<div class="slider-area">
+    <div class="slider-active owl-carousel">
+        <div class="single-slider slider-1" style="background-image: url(/Assets/img/img-show.jpg)">
+            <div class="container">
+                <div class="slider-content slider-animated-1">
+                    <div class="slider-img text-center">
+                        <img class="animated" src="~/Assets/img/slider/bike-1.png" alt="slider images">
+                    </div>
+                    <div class="slider-text-img">
+                        <h6 class="animated">BOOK YOUR SHOES INSTANTLY AND ENJOY DISCOUNT</h6>
+                        <img class="animated" src="~/Assets/img/icon-img/bike.png" alt="slider images">
+                    </div>
+                    <h2 class="animated">SHOES</h2>
+                </div>
+            </div>
+        </div>
+        <div class="single-slider slider-1" style="background-image: url(/Assets/img/slider/slider-bg.jpg)">
+            <div class="container">
+                <div class="slider-content slider-animated-1">
+                    <div class="slider-img text-center">
+                        <img class="animated" src="~/Assets/img/slider/bike-2.png" alt="slider images">
+                    </div>
+                    <div class="slider-text-img">
+                        <h6 class="animated">BOOK YOUR BIKE INSTANTLY AND ENJOY DISCOUNT</h6>
+                        <img class="animated" src="~/Assets/img/icon-img/bike.png" alt="slider images">
+                    </div>
+                    <h2 class="animated">MOTORCYCLE</h2>
+                </div>
+            </div>
+        </div>
+        <div class="single-slider slider-1" style="background-image: url(/Assets/img/slider/slider-bg.jpg)">
+            <div class="container">
+                <div class="slider-content slider-animated-1">
+                    <div class="slider-img text-center">
+                        <img class="animated" src="~/Assets/img/slider/bike-1.png" alt="slider images">
+                    </div>
+                    <div class="slider-text-img">
+                        <h6 class="animated">BOOK YOUR BIKE INSTANTLY AND ENJOY DISCOUNT</h6>
+                        <img class="animated" src="~/Assets/img/icon-img/bike.png" alt="slider images">
+                    </div>
+                    <h2 class="animated">MOTORCYCLE</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-social">
+        <ul>
+            <li class="facebook"><a href="#"><i class="icofont icofont-social-facebook"></i></a></li>
+            <li class="twitter"><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
+            <li class="pinterest"><a href="#"><i class="icofont icofont-social-pinterest"></i></a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="overview-area pt-135">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="overview-content">
+                    <h1>Corona Update</h1>
+                    <br />
+                    <table class="table table-bordered" id="covid-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Quốc gia</th>
+                                <th scope="col">Số ca nhiễm</th>
+                                <th scope="col">Tử vong</th>
+                                <th scope="col">Hồi phục</th>
+                            </tr>
+                        </thead>
+                        <tbody id="covid-data">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="overview-img">
+                    <img class="tilter" src="~/Assets/img/banner/banner-1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="testimonial-area" style="margin-bottom: 100px;">
+    <div class="container">
+        <div class="section-title-2 section-title-position">
+            <h2>OUR CLIENTS REVIEW</h2>
+        </div>
+        <div class="testimonial-active owl-carousel">
+            <div class="single-testimonial">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="testimonial-img pl-75">
+                            <img alt="image" src="~/Assets/img/team/testimonial-1.jpg">
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="testimonial-content">
+                            <div class="testimonial-dec">
+                                <p><span>OSWAN</span> the most latgest bike store in the wold can serve you latest  qulity of motorcycle also you can sell here your motorcycle it quo minus iduod maxie placeat facere possimus, omnis voluptas assumenda est, omnis dolor llendus. Temporibus autem quibusdam quoten</p>
+                            </div>
+                            <div class="name-designation">
+                                <h4>Rayed Ayash Hisham</h4>
+                                <span>COO, ASEKHA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="single-testimonial">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12 col-12">
+                        <div class="testimonial-img pl-75">
+                            <img alt="image" src="~/Assets/img/team/testimonial-2.png">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-12">
+                        <div class="testimonial-content">
+                            <div class="testimonial-dec">
+                                <p><span>OSWAN</span> Lorem ipsum dolor sit amet, consectetur adipisicing , sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex commodo consequat. Duis dolor in reprehenderit.</p>
+                            </div>
+                            <div class="name-designation">
+                                <h4>James Momen Nirob</h4>
+                                <span>CEO, ASEKHA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Areas/Admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Admin/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $.get("https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true", function (data) {
+                var html = $("#covid-data");
+                for (i = 0; i < data.length; i++) {
+                    html.append(`<tr>
+                                <th scope="row">${i+1}</th>
+                                <td>${data[i].country}</td>
+                                <td>${data[i].infected}</td>
+                                <td>${data[i].deceased}</td>
+                                <td>${data[i].recovered}</td>
+                            </tr>`);
+                }
+                
+                $('#covid-table').DataTable()
+            });
+
+            @*$.get("@Url.Action("GetCovid", "Home")", function (data) {
+                let covid = JSON.parse(data.result);
+                covid = covid.data;
+                var html = $("#covid-data");
+                html.append(`<tr>
+                                <th scope="row">1</th>
+                                <td>Thế giới</td>
+                                <td>${covid.global.cases}</td>
+                                <td>${covid.global.deaths}</td>
+                                <td>${covid.global.recovered}</td>
+                            </tr>`);
+                html.append(`<tr>
+                                <th scope="row">2</th>
+                                <td>Việt Nam</td>
+                                <td>${covid.vietnam.cases}</td>
+                                <td>${covid.vietnam.deaths}</td>
+                                <td>${covid.vietnam.recovered}</td>
+                            </tr>`);
+
+            });*@
+        });
+    </script>
+}
