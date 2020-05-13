@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Security;
 
-namespace CNWeb.Common
+namespace cong_nghe_web.Common
 {
     public class CustomMembershipProvider : MembershipProvider
     {

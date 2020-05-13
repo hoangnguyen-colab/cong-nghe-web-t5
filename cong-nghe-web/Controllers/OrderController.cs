@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CNcong_nghe_webWeb.Controllers
+namespace cong_nghe_webWeb.Controllers
 {
     public class OrderController : Controller
     {

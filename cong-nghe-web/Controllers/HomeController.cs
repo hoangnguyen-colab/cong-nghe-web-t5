@@ -30,10 +30,10 @@ namespace cong_nghe_web.Controllers
             return View();
         }
 
-        //[AllowAnonymous]
-        //public async Task<ActionResult> NavbarCategory()
-        //{
-        //    return PartialView("_NavbarCategory", await new CategoryDAO().LoadData());
-        //}
+        [AllowAnonymous]
+        public async Task<ActionResult> NavbarCategory()
+        {
+            return PartialView("_NavbarCategory", await new BrandDAO().LoadData());
+        }
     }
 }

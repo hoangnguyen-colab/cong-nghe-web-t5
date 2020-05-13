@@ -55,7 +55,7 @@ namespace Models.DAO
 
         public async Task<bool> LoginAsync(string username, string password)
         {
-            string encrypt = EncryptPassword(password);
+            string encrypt = MD5Hash(password);
             var result = await db.CUSTOMERs.AsNoTracking().CountAsync(x => x.CustomerUsername.Equals(username)  && x.CustomerPassword.Equals(encrypt));
             if (result > 0)
                 return true;
@@ -65,7 +65,7 @@ namespace Models.DAO
 
         public bool Login(string username, string password)
         {
-            string encrypt = EncryptPassword(password);
+            string encrypt = MD5Hash(password);
             var result = db.CUSTOMERs.AsNoTracking().Count(x => x.CustomerUsername.Equals(username) && x.CustomerPassword.Equals(encrypt));
             if (result > 0)
                 return true;
@@ -75,25 +75,23 @@ namespace Models.DAO
 
         public async Task<int> Register(CUSTOMER cus)
         {
-            cus.CustomerPassword = EncryptPassword(cus.CustomerPassword);
+            cus.CustomerPassword = MD5Hash(cus.CustomerPassword);
             db.CUSTOMERs.Add(cus);
             await db.SaveChangesAsync();
             return cus.CustomerID;
         }
 
-        public static string EncryptPassword(string text)
+        public static string MD5Hash(string input)
         {
-            string password = "";
-            if (!string.IsNullOrEmpty(text))
-            {
-                byte[] data = new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input));
 
-                foreach (byte item in data)
-                {
-                    password += item;
-                }
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                hash.Append(bytes[i].ToString("x2"));
             }
-            return password;
+            return hash.ToString();
         }
     }
 }

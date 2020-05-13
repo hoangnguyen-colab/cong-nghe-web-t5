@@ -21,9 +21,9 @@ namespace cong_nghe_web.Controllers
 
         [HttpGet]
         [Route("cate/{meta}")]
-        public async Task<ActionResult> ShopCategory(string meta, string sort)
+        public async Task<ActionResult> ShopCategory(string url, string sort)
         {
-            ViewBag.meta = await new BrandDAO().LoadByURL(meta);
+            ViewBag.brand = await new BrandDAO().LoadByURL(url);
             ViewBag.sort = sort;
             return View();
         }
