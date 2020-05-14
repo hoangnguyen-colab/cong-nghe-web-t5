@@ -31,13 +31,9 @@ namespace cong_nghe_web.Areas.Admin.Models
         [Required(ErrorMessage = "Select Brand")]
         public int BrandID { get; set; }
 
-        [Display(Name = "Show Image 1")]
+        [Display(Name = "Product Image")]
         [StringLength(250)]
-        public string ShowImage_1 { get; set; }
-
-        [Display(Name = "Show Image 1")]
-        [StringLength(250)]
-        public string ShowImage_2 { get; set; }
+        public string ProductImage { get; set; }
 
         [Required]
         [Display(Name = "Status")]

@@ -31,10 +31,7 @@ namespace Models.EF
         public int? Rating { get; set; }
 
         [StringLength(4000)]
-        public string ShowImage_1 { get; set; }
-
-        [StringLength(4000)]
-        public string ShowImage_2 { get; set; }
+        public string ProductImage { get; set; }
 
         public int? ProductStock { get; set; }
 

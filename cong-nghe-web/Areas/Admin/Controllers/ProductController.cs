@@ -79,8 +79,7 @@ namespace cong_nghe_web.Areas.Admin.Controllers
                     ProductStock = model.ProductStock,
                     BrandID = model.BrandID,
                     ProductURL = SlugGenerator.SlugGenerator.GenerateSlug(model.ProductName),
-                    ShowImage_1 = model.ShowImage_1,
-                    ShowImage_2 = model.ShowImage_2,
+                    ProductImage = model.ProductImage,
                     ProductStatus = model.ProductStatus,
                     CreatedDate = DateTime.Now
                 };

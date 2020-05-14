@@ -29,7 +29,7 @@ namespace cong_nghe_web.Controllers
         }
 
         [HttpGet]
-        [Route("san-pham/{prodmeta}")]
+        [Route("san-pham/{url}")]
         public async Task<ActionResult> Detail(string url)
         {
             try

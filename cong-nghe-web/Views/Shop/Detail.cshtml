@@ -31,24 +31,14 @@
                             <div class="tab-pane active" id="pro-details1">
                                 <div class="easyzoom easyzoom--overlay">
                                     <a href="javascript:void(0);">
-                                        <img src="@Model.ShowImage_1" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="pro-details2">
-                                <div class="easyzoom easyzoom--overlay">
-                                    <a href="javascript:void(0);">
-                                        <img src="@Model.ShowImage_2" alt="">
+                                        <img src="@Model.ProductImage" alt="">
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="product-details-small nav mt-12 product-dec-slider owl-carousel">
                             <a class="active" href="#pro-details1">
-                                <img src="@Model.ShowImage_1" alt="">
-                            </a>
-                            <a href="#pro-details2">
-                                <img src="@Model.ShowImage_2" alt="">
+                                <img src="@Model.ProductImage" alt="">
                             </a>
                         </div>
                     </div>
@@ -69,30 +59,19 @@
                         <h5 class="pd-sub-title">Product Price</h5>
                         @if (Model.PromotionPrice.HasValue)
                         {
-                            <span>
-                                Original Price:
-                                <strike style="        color: #ff0000;
-">$@Model.ProductPrice</strike>
-                            </span><br />
-                            <span>Sale Price: $@Model.PromotionPrice</span>
+                            <div class="original-price">$@Model.PromotionPrice.Value.ToString("#,##0")₫</div>
+                            <div class="discount-price">
+                                $@Model.ProductPrice.ToString("#,##0")₫
+                            </div>
                         }
                         else
                         {
-                            <span>$@Model.ProductPrice</span>
+                            <span class="original-price">$@Model.ProductPrice.ToString("#,##0")₫</span>
                         }
                     </div>
                     <div class="product-overview">
                         <h5 class="pd-sub-title">Product Overview</h5>
                         <p>@Model.ProductDescription</p>
-                    </div>
-                    <div class="product-color">
-                        <h5 class="pd-sub-title">Product Size</h5>
-                        <select id="select-size">
-                            @foreach (var item in ViewData["Size"] as List<SIZE>)
-                            {
-                                <option value="@item.SizeID">@item.Size1</option>
-                            }
-                        </select>
                     </div>
                     <div class="quickview-plus-minus">
                         <div class="cart-plus-minus">

@@ -19,8 +19,6 @@ namespace Models.EF
 
         public DateTime? OrderDate { get; set; }
 
-        public DateTime? DeliveryDate { get; set; }
-
         public decimal? Total { get; set; }
 
         public int? OrderStatusID { get; set; }
