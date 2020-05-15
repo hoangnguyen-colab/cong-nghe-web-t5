@@ -28,6 +28,11 @@ namespace Models.EF
                 .WithRequired(e => e.BRAND)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<ORDERSTATU>()
+                .HasMany(e => e.ORDERs)
+                .WithOptional(e => e.ORDERSTATU)
+                .HasForeignKey(e => e.OrderStatusID);
+
             modelBuilder.Entity<PRODUCT>()
                 .Property(e => e.ProductPrice)
                 .HasPrecision(18, 0);
@@ -41,6 +46,7 @@ namespace Models.EF
                 .WithOptional(e => e.PRODUCT)
                 .WillCascadeOnDelete();
         }
+
         public void FixEfProviderServicesProblem()
         {
             var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;

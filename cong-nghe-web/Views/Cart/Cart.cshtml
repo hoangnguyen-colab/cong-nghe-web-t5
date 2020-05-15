@@ -28,12 +28,12 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-name">products</th>
-                                    <th class="product-price">products name</th>
-                                    <th class="product-name">price</th>
-                                    <th class="product-price">quantity</th>
-                                    <th class="product-quantity">total</th>
-                                    <th class="product-subtotal">delete</th>
+                                    <th class="product-name text-center">products</th>
+                                    <th class="product-price text-center">products name</th>
+                                    <th class="product-name text-center">price</th>
+                                    <th class="product-price text-center">quantity</th>
+                                    <th class="product-quantity text-center">total</th>
+                                    <th class="product-subtotal text-center">delete</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,18 +41,18 @@
                                 {
                                     subtotal = 0;
                                     <tr>
-                                        <td class="product-thumbnail">
+                                        <td class="product-thumbnail text-center">
                                             <a href="@Url.Action("Detail", "Shop", new { url = item.product.ProductURL })">
-                                                <img src="@item.product.ProductImage" alt="" style="        width: 120px;
+                                                <img src="@item.product.ProductImage" alt="" style="width: 120px;
 ">
                                             </a>
                                         </td>
-                                        <td class="product-name">
+                                        <td class="product-name text-center">
                                             <a href="@Url.Action("Detail", "Shop", new { url = item.product.ProductURL })">
                                                 @item.product.ProductName
                                             </a>
                                         </td>
-                                        <td class="product-price">
+                                        <td class="product-price text-center">
                                             @if (item.product.PromotionPrice.HasValue)
                                             {
                                                 <span class="amount">
@@ -66,16 +66,16 @@
                                                 </span>
                                             }
                                         </td>
-                                        <td class="product-quantity">
-                                            <div class="quantity-range">
-                                                <input class="input-text qty text" type="number" step="1" min="0" value="@item.quantity" title="Qty" size="4">
-                                            </div>
+                                        <td class="product-quantity text-center">
+                                            <span class="amount">
+                                                @item.quantity
+                                            </span>
                                         </td>
                                         @if (item.product.PromotionPrice.HasValue)
                                         {
                                             subtotal = item.product.PromotionPrice.Value * item.quantity;
                                             total += subtotal;
-                                            <td class="product-subtotal">
+                                            <td class="product-subtotal text-center">
                                                 @subtotal.ToString("#,##0")₫
                                             </td>
                                         }
@@ -83,12 +83,12 @@
                                         {
                                             subtotal = item.product.ProductPrice * item.quantity;
                                             total += subtotal;
-                                            <td class="product-subtotal">
+                                            <td class="product-subtotal text-center">
                                                 @subtotal.ToString("#,##0")₫
                                             </td>
 
                                         }
-                                        <td class="product-cart-icon product-subtotal">
+                                        <td class="product-cart-icon product-subtotal text-center">
                                             <a href="@Url.Action("Delete", "Cart", new { id = item.product.ProductID })">
                                                 <i class="ti-trash"></i>
                                             </a>

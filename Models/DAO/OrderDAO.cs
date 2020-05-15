@@ -19,23 +19,16 @@ namespace Models.DAO
 
         public async Task<int> AddOrder(int CustomerID, decimal total)
         {
-            try
+            var order = new ORDER
             {
-                var order = new ORDER
-                {
-                    Total = total,
-                    OrderDate = DateTime.Now,
-                    OrderStatusID = 1,
-                    CustomerID = CustomerID
-                };
-                db.ORDERs.Add(order);
-                await db.SaveChangesAsync();
-                return order.OrderID;
-            }
-            catch
-            {
-                return 0;
-            }
+                Total = total,
+                OrderDate = DateTime.Now,
+                OrderStatusID = 1,
+                CustomerID = CustomerID
+            };
+            db.ORDERs.Add(order);
+            await db.SaveChangesAsync();
+            return order.OrderID;
         }
 
         public async Task<ORDER> LoadByID(int OrderID)

@@ -160,7 +160,7 @@
                 );
             });
 
-            $.get("@Url.Action("OrderList", "Order")",
+            $.get("@Url.Action("OrderList", "Order", new { Area = "" })",
                 {
                     "StatusID": 0
                 },

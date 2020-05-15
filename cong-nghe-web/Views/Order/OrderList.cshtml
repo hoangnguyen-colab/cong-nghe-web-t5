@@ -11,7 +11,6 @@
                 <th class="text-center">Order ID</th>
                 <th class="text-center">Total</th>
                 <th class="text-center">Order Date</th>
-                <th class="text-center">Delivery Date</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">Options</th>
             </tr>
@@ -25,13 +24,10 @@
                         @Html.DisplayFor(modelItem => item.OrderID)
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.Total)
+                        @item.Total.Value.ToString("#,##0")₫
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.OrderDate)
-                    </td>
-                    <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.DeliveryDate)
                     </td>
                     <th class="text-center">
                         @Html.DisplayFor(modelItem => item.ORDERSTATU.StatusName)
@@ -63,7 +59,6 @@
 {
     <script>
         $(document).ready(function () {
-
             $.get("@Url.Action("OrderProductList", "Order")",
                 {
                     "OrderID": "@item.OrderID"

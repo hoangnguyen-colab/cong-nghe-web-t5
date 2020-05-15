@@ -20,9 +20,6 @@
                 @Html.DisplayNameFor(model => model.OrderDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DeliveryDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
             <th></th>
@@ -58,10 +55,7 @@
                     @Html.DisplayFor(modelItem => item.OrderDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DeliveryDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Total)
+                    @item.Total.Value.ToString("#,##0")₫
                 </td>
                 <td>
                     <button class="btn btn-sm btn-success"
@@ -89,7 +83,7 @@
     {
     <text>
         $("#save-@item.OrderID").hide();
-        $.get("@Url.Action("StatusList", "Order")",
+        $.get("@Url.Action("StatusList", "Ordered")",
             {
                 "id": @item.OrderStatusID
             },

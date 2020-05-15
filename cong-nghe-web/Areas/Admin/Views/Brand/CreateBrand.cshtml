@@ -2,18 +2,18 @@
 @using Models.DAO;
 
 @{
-    ViewBag.Title = "Create Category";
+    ViewBag.Title = "Create Brand";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <link href="~/Assets/loading-spinner.css" rel="stylesheet" />
 @*<link href="~/Areas/Admin/assets/plugins/sweet-alert/sweetalert2.min.css" rel="stylesheet" type="text/css" />*@
 
-<h2>Create Category</h2>
+<h2>Create Brand</h2>
 
 <div class="row">
     <div class="col-lg-3">
-        @using (Html.BeginForm("CreateCategory", "Category", FormMethod.Post, new { id = "cate-submit-form" }))
+        @using (Html.BeginForm("CreateBrand", "Brand", FormMethod.Post, new { id = "cate-submit-form" }))
         {
             @Html.AntiForgeryToken()
 
@@ -21,10 +21,16 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    <label class="control-label col-md-6">Category Name</label>
+                    <label class="control-label col-md-6">Brand Name</label>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-6">Brand URL</label>
+                    <div class="col-md-10">
+                        <h5 id="brand-url">(name)</h5>
                     </div>
                 </div>
 
@@ -36,7 +42,7 @@
             </div>
         }
     </div>
-    <div class="col-sm" id="category-partial">
+    <div class="col-sm" id="brand-partial">
         <div class="loader" id="loader">
             <svg class="circular">
                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
@@ -53,16 +59,16 @@
 
             $("#cate-submit-form").validate({
                 rules: {
-                    'CategoryName': "required"
+                    'BrandName': "required"
                 },
                 messages: {
-                    'CategoryName': "Please enter category name!"
+                    'BrandName': "Please enter brand name!"
                 }
             });
 
-            $.post("@Url.Action("CategoryList", "Category")",
+            $.post("@Url.Action("BrandList", "Brand")",
                 function (data) {
-                    $("#category-partial").append(data);
+                    $("#brand-partial").append(data);
                     $("#loader").hide();
                 }
             );
@@ -79,7 +85,7 @@
                     if (willDelete) {
                         $.ajax({
                             type: "post",
-                            url: `@Url.Action("DeleteCategory", "Category")`,
+                            url: `@Url.Action("DeleteBrand", "Brand")`,
                             data: "id=" + id,
                             success: function (response) {
                                 if (response.Success == 1) {
@@ -108,10 +114,10 @@
                     if (willDelete) {
                         $.ajax({
                             type: "post",
-                            url: `@Url.Action("EditCategory", "Category")`,
+                            url: `@Url.Action("EditBrand", "Brand")`,
                             data: {
                                 "id": id,
-                                "CategoryName": $(`#cate-${id}`).val()
+                                "BrandName": $(`#cate-${id}`).val()
                             },
                             success: function (response) {
                                 if (response.Success == 1) {
