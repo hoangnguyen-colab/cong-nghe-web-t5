@@ -22,7 +22,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Total)
             </th>
-            <th></th>
+            <th>Options</th>
         </tr>
     </thead>
     <tbody>
@@ -85,7 +85,7 @@
         $("#save-@item.OrderID").hide();
         $.get("@Url.Action("StatusList", "Ordered")",
             {
-                "id": @item.OrderStatusID
+                "id": "@item.OrderStatusID"
             },
             function (data) {
                 console.log(data);

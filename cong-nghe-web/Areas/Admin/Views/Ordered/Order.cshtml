@@ -47,7 +47,7 @@
                     if (willDelete) {
                         $.ajax({
                             type: "post",
-                            url: `@Url.Action("EditOrder", "Order")`,
+                            url: `@Url.Action("EditOrder", "Ordered")`,
                             data: {
                                 "Orderid": id,
                                 "StatusID": $(`#orderstatus-${id}`).val()

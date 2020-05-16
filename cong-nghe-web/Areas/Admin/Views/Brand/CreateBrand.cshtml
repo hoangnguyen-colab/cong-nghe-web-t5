@@ -56,7 +56,6 @@
     <script src="~/Scripts/jquery.validate.js"></script>
     <script>
         $(document).ready(function () {
-
             $("#cate-submit-form").validate({
                 rules: {
                     'BrandName': "required"
@@ -73,6 +72,19 @@
                 }
             );
         });
+
+        $("input[name=BrandName]").on('input', function (e) {
+            $("#brand-url").text(slugify($("input[name=BrandName]").val()));
+        });
+
+        function slugify(text) {
+          return text.toString().toLowerCase()
+            .replace(/\s+/g, '-')           // Replace spaces with -
+            .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+            .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+            .replace(/^-+/, '')             // Trim - from start of text
+            .replace(/-+$/, '');            // Trim - from end of text
+        }
 
         function DeleteItem(id) {
             swal({
