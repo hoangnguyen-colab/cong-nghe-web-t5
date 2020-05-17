@@ -59,10 +59,15 @@ namespace cong_nghe_web.Areas.Admin.Controllers
             return View(await new ProductDAO().LoadProduct());
         }
 
-        public async Task<ActionResult> CreateProduct()
+        public ActionResult CreateProduct()
         {
-            ViewBag.Brand = await new BrandDAO().LoadData();
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateProductPartial(int brandid)
+        {
+            return PartialView("CreateProductPartial", await new BrandDAO().LoadByID(brandid));
         }
 
         [HttpPost]
@@ -77,10 +82,10 @@ namespace cong_nghe_web.Areas.Admin.Controllers
                     ProductDescription = model.ProductDescription,
                     PromotionPrice = model.PromotionPrice,
                     ProductStock = model.ProductStock,
-                    BrandID = model.BrandID,
                     ProductURL = SlugGenerator.SlugGenerator.GenerateSlug(model.ProductName),
                     ProductImage = model.ProductImage,
                     ProductStatus = model.ProductStatus,
+                    BrandID = model.BrandID,
                     CreatedDate = DateTime.Now
                 };
                 int result = await new ProductDAO().CreateProduct(prod);

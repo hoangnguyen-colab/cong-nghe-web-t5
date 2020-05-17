@@ -52,6 +52,12 @@ namespace cong_nghe_web.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        public async Task<ActionResult> BrandListPartial()
+        {
+            return PartialView("BrandListPartial", await new BrandDAO().LoadData());
+        }
+
+        [HttpPost]
         public async Task<JsonResult> DeleteBrand(int id)
         {
             if (await new BrandDAO().LoadByID(id) == null)
