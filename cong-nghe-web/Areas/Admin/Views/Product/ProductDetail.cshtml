@@ -8,10 +8,28 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css'>
 
 <h2>
-    @Html.DisplayFor(model => model.ProductName) Detail
+    @Html.DisplayFor(model => model.ProductName) Details
 </h2>
 
 <form action="#" method="post" id="create-product-form">
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>ID</label>
+        </div>
+        <div class="input-field col s12">
+            <input readonly value="@Html.DisplayFor(model => model.ProductID)">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>Brand</label>
+        </div>
+        <div class="input-field col s12">
+            <input readonly value="@Html.DisplayFor(model => model.BRAND.BrandName)">
+        </div>
+    </div>
+
     <div class="row">
         <div class="input-field col-lg-2 s12">
             <label>Name</label>
@@ -19,8 +37,17 @@
         <div class="input-field col s12">
             <input id="product-name" name="product-name" type="text" class="validate" value="@Html.DisplayFor(model => model.ProductName)">
         </div>
-
     </div>
+
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>URL</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="product-url" type="text" readonly value="@Model.ProductURL">
+        </div>
+    </div>
+
     <div class="row">
         <div class="input-field col-lg-2 s12">
             <label>Price</label>
@@ -47,52 +74,10 @@
     </div>
     <div class="row">
         <div class="input-field col-lg-2 s12">
-            <label>Category</label>
-        </div>
-        <div class="input-field col s12">
-            <select id="select-cate" name="select-cate">
-                @foreach (var item in ViewBag.Cate)
-                {
-                    if (item.CategoryID.Equals(Model.CategoryID))
-                    {
-                        <option value="@item.CategoryID" selected="selected">@item.CategoryName
-                        </option>
-                    }
-                    else
-                    {
-                        <option value="@item.CategoryID">@item.CategoryName</option>
-                    }
-                }
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col-lg-2 s12">
-            <label>Select Size</label>
-        </div>
-        <div class="input-field col s12">
-            <select multiple id="select-size-multi" name="select-size-multi">
-                @foreach (var item in ViewBag.Size)
-                {
-                    <option value="@item.SizeID">@item.Size1</option>
-                }
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col-lg-2 s12">
             <label>Show Image 1</label>
         </div>
         <div class="input-field col s12">
-            <input id="show-image-1" type="text" class="validate" value="@Html.DisplayFor(model => model.ShowImage_1)">
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col-lg-2 s12">
-            <label>Show Image 2</label>
-        </div>
-        <div class="input-field col s12">
-            <input id="show-image-2" type="text" class="validate" value="@Html.DisplayFor(model => model.ShowImage_2)">
+            <input id="product-image" type="text" class="validate" value="@Html.DisplayFor(model => model.ProductImage)">
         </div>
     </div>
     <div class="row">
@@ -135,6 +120,19 @@
                 };
             });
 
+            $("#product-name").on('input', function (e) {
+                $("#product-url").val(slugify($("#product-name").val()));
+            });
+
+            function slugify(text) {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start of text
+                    .replace(/-+$/, '');            // Trim - from end of text
+            }
+
             $("#create-product-form").validate({
                 rules: {
                     'product-name': "required",
@@ -158,9 +156,8 @@
                         "ProductPrice": $("#product-price").val(),
                         "PromotionPrice": $("#product-promotion").val(),
                         "ProductStock": $("#product-stock").val(),
-                        "CategoryID": $("#select-cate").val(),
-                        "Size": $("#select-size-multi").val(),
-                        "ShowImage_1": $("#show-image-1").val(),
+                        "BrandID": $("#select-cate").val(),
+                        "ProductImage": $("#product-image").val(),
                         "ShowImage_2": $("#show-image-2").val(),
                         "ProductDescription": $("#text-area").val(),
                         "ProductStatus": $("#status-checkbox").is(":checked")

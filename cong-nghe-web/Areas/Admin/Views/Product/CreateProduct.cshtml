@@ -19,9 +19,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
     <script>
         $(document).ready(function () {
-            $.post("@Url.Action("CreateProductPartial", "Product")", {
-                "brandid": "1"
-            }, function (data) {
+            $.post("@Url.Action("BrandListPartial", "Brand")", function (data) {
                 $("#data-partial").empty();
                 $("#data-partial").append(data);
             });
