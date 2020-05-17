@@ -57,9 +57,7 @@ namespace cong_nghe_web.Controllers
         [HttpPost]
         public async Task<JsonResult> GetProductName(string prefix)
         {
-            var prod = await new ProductDAO().LoadName(prefix);
-
-            return Json(prod, JsonRequestBehavior.AllowGet);
+            return Json(new { name = await new ProductDAO().LoadName(prefix) }, JsonRequestBehavior.AllowGet);
         }
     }
 }

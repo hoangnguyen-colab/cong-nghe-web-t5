@@ -4,7 +4,7 @@
     ViewBag.Title = "Detail";
 }
 
-<div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/img-show.jpg)">
+<div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
             <h2>product details </h2>
@@ -59,14 +59,14 @@
                         <h5 class="pd-sub-title">Product Price</h5>
                         @if (Model.PromotionPrice.HasValue)
                         {
-                            <div class="original-price">$@Model.PromotionPrice.Value.ToString("#,##0")₫</div>
+                            <div class="original-price">@Model.PromotionPrice.Value.ToString("#,##0")₫</div>
                             <div class="discount-price">
-                                $@Model.ProductPrice.ToString("#,##0")₫
+                                @Model.ProductPrice.ToString("#,##0")₫
                             </div>
                         }
                         else
                         {
-                            <span class="original-price">$@Model.ProductPrice.ToString("#,##0")₫</span>
+                            <span class="original-price">@Model.ProductPrice.ToString("#,##0")₫</span>
                         }
                     </div>
                     <div class="product-overview">

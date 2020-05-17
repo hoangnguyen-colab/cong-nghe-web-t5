@@ -60,7 +60,9 @@ namespace Models.DAO
 
         public async Task<List<PRODUCT>> LoadName(string prefix)
         {
-            return await db.PRODUCTs.AsNoTracking().Where(x => x.ProductName.Contains(prefix)).ToListAsync();
+            var context = new ShopDienThoaiDbContext();
+            context.Configuration.ProxyCreationEnabled = false;
+            return await context.PRODUCTs.AsNoTracking().Where(x => x.ProductName.Contains(prefix)).ToListAsync();
         }
 
         public async Task<PRODUCT> LoadNameByID(int id)
