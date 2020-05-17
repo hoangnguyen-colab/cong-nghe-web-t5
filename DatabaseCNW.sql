@@ -130,67 +130,12 @@ INSERT INTO [ADMIN]
 VALUES(N'hoang', N'4297f44b13955235245b2497399d7a93', N'Nguyễn Hoàng', GETDATE())
 GO
 
---------------------------------------------------
-CREATE PROC SelectOrderID
-    @CustomerID INT,
-    @StatusID INT
-AS
-BEGIN
-    IF @StatusID = 0
-    BEGIN
-        SELECT [ORDER].OrderID
-        FROM [ORDER]
-        WHERE [ORDER].CustomerID = @CustomerID
-    END
-        ELSE
-        BEGIN
-        SELECT [ORDER].OrderID
-        FROM [ORDER]
-        WHERE [ORDER].CustomerID = @CustomerID
-            AND [OrderStatusID] = @StatusID
-    END
-END
-GO
-
-CREATE PROC SelectOrder
-    @CustomerID INT
-AS
-BEGIN
-    SELECT [ORDER].OrderID,
-        [ORDER].Total,
-        [ORDER].OrderStatusID,
-        [ORDERSTATUS].StatusName,
-        [ORDER].OrderDate,
-        [ORDER].DeliveryDate
-    FROM [ORDER] JOIN [ORDERSTATUS] ON [ORDER].OrderStatusID = [ORDERSTATUS].StatusID
-    WHERE [ORDER].CustomerID = @CustomerID
-END
-GO
-
-CREATE PROC SelectOrderProduct
-    @OrderID INT
-AS
-BEGIN
-    SELECT
-        [PRODUCT].ProductID,
-        [PRODUCT].ProductName,
-        [BRAND].BrandName,
-
-        [ORDERDETAIL].Quantity
-    FROM [ORDERDETAIL]
-        JOIN [ORDER] ON [ORDERDETAIL].OrderID = [ORDER].OrderID
-        JOIN [ORDERSTATUS] ON [ORDER].OrderStatusID = [ORDERSTATUS].StatusID
-        JOIN [PRODUCT] ON [ORDERDETAIL].[ProductID] = [PRODUCT].ProductID
-        JOIN [BRAND] ON [PRODUCT].BrandID = [BRAND].BrandName
-    WHERE [ORDER].OrderID = @OrderID
-END
-
-
 --------------------------------------------
 -- public void FixEfProviderServicesProblem()
 --         {
 --             var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
 --         }
+--------------------------------------------
 
 INSERT [dbo].[PRODUCT]  VALUES ( N'iPhone 11 Pro Max 512GB Gold', N'Để tìm kiếm một chiếc smartphone có hiệu năng mạnh mẽ và có thể sử dụng mượt mà trong 2-3 năm tới thì không có chiếc máy nào xứng đang hơn chiếc iPhone 11 Pro Max 512GB mới ra mắt trong năm 2019 của Apple.', CAST(43990000 AS Decimal(18, 0)), CAST(41990000 AS Decimal(18, 0)), 5, N'https://cdn.tgdd.vn/Products/Images/42/210654/iphone-11-pro-max-512gb-gold-400x460.png', 50, N'iphone-11-pro-max-512gb-gold', 1, CAST(N'2020-05-14T18:44:04.920' AS DateTime), 1)
 INSERT [dbo].[PRODUCT]  VALUES ( N'iPhone 11 Pro Max 256GB Black', N'Để tìm kiếm một chiếc smartphone có hiệu năng mạnh mẽ và có thể sử dụng mượt mà trong 2-3 năm tới thì không có chiếc máy nào xứng đang hơn chiếc iPhone 11 Pro Max 512GB mới ra mắt trong năm 2019 của Apple.', CAST(37990000 AS Decimal(18, 0)), NULL, 5, N'https://cdn.tgdd.vn/Products/Images/42/210653/iphone-11-pro-max-256gb-black-400x460.png', 50, N'iphone-11-pro-max-256gb-black', 1, CAST(N'2020-05-14T18:44:04.920' AS DateTime), 1)
