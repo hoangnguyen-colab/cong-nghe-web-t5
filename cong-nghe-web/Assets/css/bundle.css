@@ -1185,6 +1185,14 @@ textarea:focus {
     background-color: #001232;
 }
 
+.btn-style--success {
+    background: #00ff7f;
+}
+
+.btn-style--fail {
+    background: #f51d1a;
+}
+
 
 button:focus {
   outline: none;

@@ -44,6 +44,24 @@ namespace cong_nghe_web.Controllers
                 return HttpNotFound();
             }
         }
+        
+        [HttpPost]
+        public async Task<ActionResult> ConfigDetail(int id)
+        {
+            try
+            {
+                var config = await new ConfigurationDAO().LoadConfig(id);
+                if (config == null)
+                {
+                    return HttpNotFound();
+                }
+                return PartialView("ConfigDetail", config);
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+        }
 
         [HttpGet]
         public async Task<ActionResult> ShopPartial(string url, string search, string sort, int pageindex)

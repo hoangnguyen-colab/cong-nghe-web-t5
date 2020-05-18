@@ -78,9 +78,19 @@
                             <input type="text" value="01" name="qtybutton" class="cart-plus-minus-box" id="quantity-input">
                         </div>
                         <div class="quickview-btn-cart">
-                            <a class="btn-style cr-btn" href="javascrip:void(0);" id="submit-btn"><span>add to cart</span></a>
+                            <a class="btn-style cr-btn" href="javascrip:void(0);" id="submit-btn">
+                                <span>
+                                    <i class="ti-shopping-cart" id="btn-icon"></i> add to cart
+                                </span>
+                            </a>
                         </div>
                         <div id="alerts"></div>
+                    </div>
+                    <div id="config-detail">
+                        <div class="product-overview">
+                            <h5 class="pd-sub-title">Product Detail</h5>
+
+                        </div>
                     </div>
                     <div class="product-share">
                         <h5 class="pd-sub-title">Share</h5>
@@ -108,9 +118,20 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            $('#submit-btn').click(function () {
 
-                $.ajax({
+            $.post("@Url.Action("ConfigDetail", "Shop")", {
+                "id": "@Model.ProductID"
+            }, function (data) {
+                $("#config-detail").append(data);
+            })
+
+            $('#submit-btn').click(function () {
+                //$('#submit-btn').addClass("btn-style--success");
+                $('#submit-btn').addClass("btn-style--fail");
+                //$('#btn-icon').removeClass('ti-shopping-cart').addClass('ti-check');
+                $('#btn-icon').removeClass('ti-shopping-cart').addClass('ti-close');
+
+                @*$.ajax({
                     type: "post",
                     url: "@Url.Action("OrderNow", "Cart")",
                     data: {
@@ -142,7 +163,7 @@
                             fade();
                         }
                     }
-                });
+                });*@
             });
             function fade() {
                 $('.alert').delay(3000).fadeOut();
