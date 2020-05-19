@@ -224,17 +224,19 @@
                     type: "POST",
                     url: "@Url.Action("SubmitCheckout", "Cart")",
                     success: function (response) {
-                        console.log(response);
                         if (response.Success) {
-                            alert("Order submited");
-                            window.location.href =
-                                "@Url.Action("CustomerProfile", "Customer", new { username = customer.CustomerUsername })";
+                            $('#checkout-btn').val("Checkout Success").css("background", "#00ff7f").css("color", "#000");
+                            window.setTimeout(function () {
+                                window.location.href =
+                                    "@Url.Action("CustomerProfile", "Customer", new { username = customer.CustomerUsername })";
+                            }, 1000);
+
                         } else {
-                            $("#checkout-info-text").text("Error while processing your order");
+                            $('#checkout-btn').val("Fail to checkout").css("background", "#f51d1a");
                         }
                     },
                     error: function () {
-                        $("#checkout-info-text").text("Error while processing your order");
+                        $('#checkout-btn').val("Fail to checkout").css("background", "#f51d1a");
                     }
                 });
             });

@@ -1157,10 +1157,10 @@
     display: inline-block;
 }
 
-    .product-price .discount-price {
-        text-decoration: line-through;
-        color: #9b9b9b;
-    }
+.product-price .discount-price {
+    text-decoration: line-through;
+    color: #9b9b9b;
+}
 
 .product-title-spreed > span {
     color: #9b9b9b;

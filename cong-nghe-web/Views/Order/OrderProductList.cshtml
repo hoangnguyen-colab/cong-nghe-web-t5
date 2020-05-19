@@ -4,7 +4,7 @@
 <table class="table" style="margin-bottom: 0;">
     <tr>
         <th class="text-center">
-            @Html.DisplayNameFor(Model => Model.OrderID)
+            @Html.DisplayNameFor(Model => Model.ProductID)
         </th>
         <th class="text-center">
             @Html.DisplayNameFor(Model => Model.PRODUCT.ProductName)
@@ -17,10 +17,12 @@
     {
         <tr>
             <td class="text-center">
-                @Html.DisplayFor(modelItem => item.OrderID)
+                @Html.DisplayFor(modelItem => item.ProductID)
             </td>
             <td class="text-center">
-                @Html.DisplayFor(modelItem => item.PRODUCT.ProductName)
+                <a href="@Url.Action("Detail", "Shop", new { url = item.PRODUCT.ProductURL })">
+                    @Html.DisplayFor(modelItem => item.PRODUCT.ProductName)
+                </a>
             </td>
             <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Quantity)

@@ -126,12 +126,7 @@
             })
 
             $('#submit-btn').click(function () {
-                //$('#submit-btn').addClass("btn-style--success");
-                $('#submit-btn').addClass("btn-style--fail");
-                //$('#btn-icon').removeClass('ti-shopping-cart').addClass('ti-check');
-                $('#btn-icon').removeClass('ti-shopping-cart').addClass('ti-close');
-
-                @*$.ajax({
+                $.ajax({
                     type: "post",
                     url: "@Url.Action("OrderNow", "Cart")",
                     data: {
@@ -141,6 +136,8 @@
                     },
                     success: function (response) {
                         if (response.Success == true) {
+                            $('#submit-btn').addClass("btn-style--success");
+                            $('#submit-btn span').empty().append('<i class="ti-check"></i> Success');
 
                             $.get("@Url.Action("CartPartial", "Cart")",
                                 function (data) {
@@ -152,18 +149,20 @@
                                 }
                             );
 
-                            $("#alerts").append(`<div class="alert
-                                                alert-success" style="width: 175px;
-                                                role="alert">
-                                                Success
-                                                </div>`);
-                            fade();
+                            //$("#alerts").append(`<div class="alert
+                            //                    alert-success" style="width: 175px;
+                            //                    role="alert">
+                            //                    Success
+                            //                    </div>`);
+                            //fade();
                         } else {
-                            $("#alerts").append(`<div class="alert alert-danger" style="width: 175px; role="alert">Failed</div>`);
-                            fade();
+                            $('#submit-btn').addClass("btn-style--fail");
+                            $('#submit-btn span').empty().append('<i class="ti-close"></i> Add Fail');
+                            //$("#alerts").append(`<div class="alert alert-danger" style="width: 175px; role="alert">Failed</div>`);
+                            //fade();
                         }
                     }
-                });*@
+                });
             });
             function fade() {
                 $('.alert').delay(3000).fadeOut();
