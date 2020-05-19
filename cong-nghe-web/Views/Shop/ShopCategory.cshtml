@@ -95,7 +95,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             let sort = "@ViewBag.sort";
-            let url = "@ViewBag.brand.BrandURL";
+            let id = "@ViewBag.brand.BrandID";
             let pageindex = 0;
 
              $.get("@Url.Action("NavbarCategory", "Home")",
@@ -104,9 +104,9 @@
                 }
             );
 
-            $.get("@Url.Action("ShopPartial", "Shop")",
+            $.post("@Url.Action("ShopPartial", "Shop")",
                 {
-                    "url": url,
+                    "brandid": id,
                     "sort": sort,
                     "pageindex": pageindex
                 },
@@ -143,9 +143,9 @@
             $("#load-more").click(function () {
                 $("#loader").show();
                 pageindex += 1;
-                $.get("@Url.Action("ShopPartial", "Shop")",
+                $.post("@Url.Action("ShopPartial", "Shop")",
                     {
-                        "url": url,
+                        "brandid": id,
                         "sort": sort,
                         "pageindex": pageindex
                     },

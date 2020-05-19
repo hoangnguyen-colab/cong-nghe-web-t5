@@ -11,9 +11,9 @@ namespace cong_nghe_web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapMvcAttributeRoutes();
-
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
                 name: "Default",

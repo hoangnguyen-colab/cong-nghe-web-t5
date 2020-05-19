@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace cong_nghe_web.Areas.Admin.Controllers
 {
+    [RouteArea("Admin")]
     public class OrderedController : BaseController
     {
         public ActionResult Order()

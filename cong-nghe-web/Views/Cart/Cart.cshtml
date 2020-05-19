@@ -42,13 +42,13 @@
                                     subtotal = 0;
                                     <tr>
                                         <td class="product-thumbnail text-center">
-                                            <a href="@Url.Action("Detail", "Shop", new { url = item.product.ProductURL })">
+                                            <a href="@Url.Action("Detail", "Shop", new { id = item.ProductID, url = item.ProductURL })">
                                                 <img src="@item.product.ProductImage" alt="" style="width: 120px;
 ">
                                             </a>
                                         </td>
                                         <td class="product-name text-center">
-                                            <a href="@Url.Action("Detail", "Shop", new { url = item.product.ProductURL })">
+                                            <a href="@Url.Action("Detail", "Shop", new { id = item.ProductID, url = item.ProductURL })">
                                                 @item.product.ProductName
                                             </a>
                                         </td>

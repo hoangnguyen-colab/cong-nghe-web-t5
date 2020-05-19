@@ -50,7 +50,7 @@ namespace Models.DAO
 
         public async Task<PRODUCT> LoadByID(int ID)
         {
-            return await db.PRODUCTs.AsNoTracking().Where(x => x.ProductID == ID).FirstOrDefaultAsync();
+            return await db.PRODUCTs.FindAsync(ID);
         }
 
         public async Task<List<PRODUCT>> LoadProduct()
@@ -70,15 +70,14 @@ namespace Models.DAO
             return await db.PRODUCTs.AsNoTracking().Where(x => x.ProductID == id).FirstOrDefaultAsync();
         }
 
-        public async Task<List<PRODUCT>> LoadProduct(string url, string searchString, string sort, int pagesize, int pageindex)
+        public async Task<List<PRODUCT>> LoadProduct(int? brandid, string searchString, string sort, int pagesize, int pageindex)
         {
             // get list
             var list = (from s in db.PRODUCTs select s).AsNoTracking();
 
-            if (!String.IsNullOrEmpty(url))
+            if (!String.IsNullOrEmpty(brandid.ToString()))
             {
-                var brand = db.BRANDs.AsNoTracking().Where(c => c.BrandURL.Equals(url)).First().BrandID;
-                list = list.Where(x => x.BrandID.Equals(brand));
+                list = list.Where(x => x.BrandID == brandid);
             }
 
             //filter

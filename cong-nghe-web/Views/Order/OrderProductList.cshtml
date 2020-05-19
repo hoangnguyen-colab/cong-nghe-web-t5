@@ -20,7 +20,7 @@
                 @Html.DisplayFor(modelItem => item.ProductID)
             </td>
             <td class="text-center">
-                <a href="@Url.Action("Detail", "Shop", new { url = item.PRODUCT.ProductURL })">
+                <a href="@Url.Action("Detail", "Shop", new { id = item.ProductID, url = item.PRODUCT.ProductURL })">
                     @Html.DisplayFor(modelItem => item.PRODUCT.ProductName)
                 </a>
             </td>

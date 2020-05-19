@@ -24,10 +24,7 @@ namespace Models.DAO
 
         public async Task<BRAND> LoadByID(int id)
         {
-            return await db.BRANDs
-                .AsNoTracking()
-                .Where(x => x.BrandID.Equals(id))
-                .SingleOrDefaultAsync();
+            return await db.BRANDs.FindAsync(id);
         }
 
         public async Task<BRAND> LoadByURL(string url)

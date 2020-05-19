@@ -106,7 +106,7 @@
                 }
             );
 
-            $.get("@Url.Action("ShopPartial", "Shop")",
+            $.post("@Url.Action("ShopPartial", "Shop")",
                 {
                     "search": search,
                     "sort": sort,
@@ -146,7 +146,7 @@
             $("#load-more").click(function () {
                 $("#loader").show();
                 pageindex += 1;
-                $.get("@Url.Action("ShopPartial", "Shop")",
+                $.post("@Url.Action("ShopPartial", "Shop")",
                     {
                         "search": search,
                         "sort": sort,
