@@ -113,6 +113,8 @@ namespace cong_nghe_web.Controllers
             return list;
         }
 
+        [Authorize]
+        [HttpPost]
         public async Task<JsonResult> SubmitCheckout()
         {
             try

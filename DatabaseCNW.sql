@@ -54,20 +54,6 @@ CREATE TABLE [CONFIGURATION]
 )
 GO
 
-insert into [CONFIGURATION]
-values
-    (N'iOS',
-        N'iOS 13', 
-        N'6.5" 1242 x 2688 Pixels', 
-        N'12 MP', 
-        N'3 camera 12 MP', 
-        N'Apple A13 Bionic 6 nhân', 
-        N'4 GB', 
-        N'512 GB', 
-        N'1 eSIM & 1 Nano SIM', 
-        N'3969 mAh', 
-        1)
-
 CREATE TABLE [CUSTOMER]
 (
     CustomerID INT PRIMARY KEY IDENTITY(1, 1),
@@ -154,6 +140,21 @@ GO
 INSERT [dbo].[PRODUCT]
 VALUES
     ( N'iPhone 11 Pro Max 512GB Gold', N'Để tìm kiếm một chiếc smartphone có hiệu năng mạnh mẽ và có thể sử dụng mượt mà trong 2-3 năm tới thì không có chiếc máy nào xứng đang hơn chiếc iPhone 11 Pro Max 512GB mới ra mắt trong năm 2019 của Apple.', CAST(43990000 AS Decimal(18, 0)), CAST(41990000 AS Decimal(18, 0)), 5, N'https://cdn.tgdd.vn/Products/Images/42/210654/iphone-11-pro-max-512gb-gold-400x460.png', 50, N'iphone-11-pro-max-512gb-gold', 1, CAST(N'2020-05-14T18:44:04.920' AS DateTime), 1)
+
+insert into [CONFIGURATION]
+values
+    (N'iOS',
+        N'iOS 13', 
+        N'6.5" 1242 x 2688 Pixels', 
+        N'12 MP', 
+        N'3 camera 12 MP', 
+        N'Apple A13 Bionic 6 nhân', 
+        N'4 GB', 
+        N'512 GB', 
+        N'1 eSIM & 1 Nano SIM', 
+        N'3969 mAh', 
+        1)
+
 INSERT [dbo].[PRODUCT]
 VALUES
     ( N'iPhone 11 Pro Max 256GB Black', N'Để tìm kiếm một chiếc smartphone có hiệu năng mạnh mẽ và có thể sử dụng mượt mà trong 2-3 năm tới thì không có chiếc máy nào xứng đang hơn chiếc iPhone 11 Pro Max 512GB mới ra mắt trong năm 2019 của Apple.', CAST(37990000 AS Decimal(18, 0)), NULL, 5, N'https://cdn.tgdd.vn/Products/Images/42/210653/iphone-11-pro-max-256gb-black-400x460.png', 50, N'iphone-11-pro-max-256gb-black', 1, CAST(N'2020-05-14T18:44:04.920' AS DateTime), 1)

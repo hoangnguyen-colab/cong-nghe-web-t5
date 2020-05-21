@@ -28,7 +28,14 @@ namespace cong_nghe_web.Controllers
         [HttpPost]
         public JsonResult ValidateUser(LoginModel model, bool RememberMe)
         {
+            /*<membership defaultProvider="CustomMembershipProvider">
+          <providers>
+            <add name="CustomMembershipProvider" connectionStringName="ShopDienThoaiDbContext" type="cong_nghe_web.Common.CustomMembershipProvider" />
+          </providers>
+        </membership>
             if (Membership.ValidateUser(model.CustomerUsername, model.CustomerPassword) && ModelState.IsValid)
+        */
+            if (new CustomerDAO().Login(model.CustomerUsername, model.CustomerPassword) && ModelState.IsValid)
             {
                 FormsAuthentication.SetAuthCookie(model.CustomerUsername, RememberMe);
                 return Json(new { Success = true, Username = model.CustomerUsername }, JsonRequestBehavior.AllowGet);
@@ -36,6 +43,7 @@ namespace cong_nghe_web.Controllers
             else
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpPost]
         public async Task<JsonResult> RegisterCustomer(RegisterCustomer model)
