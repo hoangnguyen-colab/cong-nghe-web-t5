@@ -3,7 +3,8 @@
 }
 
 
-<div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
+@*<div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">*@
+<div class="breadcrumb-area pt-255 pb-170" >
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
             <h2>Contact Us</h2>
@@ -36,7 +37,7 @@
                                 </div>
                                 <div class="communication-text">
                                     <h4>Address:</h4>
-                                    <p>Miata 309 S Main St,Stafford, KS 67578</p>
+                                    <p>10A28 , Hoang Quoc Viet Street , Cau Giay are , HaNoi City</p>
                                 </div>
                             </div>
                             <div class="single-communication">
@@ -45,7 +46,7 @@
                                 </div>
                                 <div class="communication-text">
                                     <h4>Phone:</h4>
-                                    <p>0123 456 789 - 15 2368 4597</p>
+                                    <p>0978 793 083</p>
                                 </div>
                             </div>
                             <div class="single-communication">
@@ -54,7 +55,7 @@
                                 </div>
                                 <div class="communication-text">
                                     <h4>Email:</h4>
-                                    <p><a href="#">Support@BootExperts.com</a></p>
+                                    <p><a href="#">vmquang95@gmail.com</a></p>
                                 </div>
                             </div>
                             <div class="single-communication">
@@ -63,7 +64,7 @@
                                 </div>
                                 <div class="communication-text">
                                     <h4>Website:</h4>
-                                    <p><a href="#">https://DevItems.com</a></p>
+                                    <p><a href="#">https://hhq.com.vn</a></p>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +115,8 @@
                 var mapOptions = {
                     zoom: 11,
                     scrollwheel: false,
-                    center: new google.maps.LatLng(40.709896, -73.995481),
+                    //center: new google.maps.LatLng(40.709896, -73.995481),
+                    center: new google.maps.LatLng(21.045721, 105.793368),
                     styles:
                     [
                         {
@@ -287,11 +289,11 @@
                 var mapElement = document.getElementById('map');
                 var map = new google.maps.Map(mapElement, mapOptions);
                 var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(40.709896, -73.995481),
+                    position: new google.maps.LatLng(21.045721, 105.793368),
                     map: map,
                     icon: 'assets/img/icon-img/8.png',
                     animation:google.maps.Animation.BOUNCE,
-                    title: 'Snazzy!'
+                    title: 'HHQ Shop'
                 });
             }
             google.maps.event.addDomListener(window, 'load', init);
