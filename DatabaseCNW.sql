@@ -29,6 +29,7 @@ create TABLE [PRODUCT]
     ProductImage NVARCHAR(4000) DEFAULT N'',
     ProductStock INT DEFAULT 1,--tồn kho
     ProductURL NVARCHAR(255),
+	Viewcount INT,
     ProductStatus BIT,
     CreatedDate DATETIME DEFAULT GETDATE(),
 
@@ -62,6 +63,8 @@ CREATE TABLE [CUSTOMER]
     CustomerEmail NVARCHAR(255),
     CustomerName NVARCHAR(255) NOT NULL,
     CustomerPhone NVARCHAR(20),
+	CustomerAddress NVARCHAR(255),
+
     CreatedDate DATETIME DEFAULT GETDATE()
 )
 GO
@@ -70,6 +73,10 @@ CREATE TABLE [ORDERSTATUS]
 (
     StatusID INT PRIMARY KEY,
     StatusName NVARCHAR(255),
+
+	
+  
+
     CreatedDate DATETIME DEFAULT GETDATE()
 )
 GO
@@ -79,6 +86,10 @@ CREATE TABLE [ORDER]
     OrderID INT PRIMARY KEY IDENTITY(1, 1),
     OrderDate DATETIME DEFAULT GETDATE(),
     Total DECIMAL(18, 2),
+
+	
+    CustomerPhone NVARCHAR(20),
+	CustomerAddress NVARCHAR(255),
 
     OrderStatusID INT REFERENCES [ORDERSTATUS](StatusID),
     CustomerID INT REFERENCES [CUSTOMER](CustomerID)
