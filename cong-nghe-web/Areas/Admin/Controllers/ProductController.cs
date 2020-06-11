@@ -90,7 +90,7 @@ namespace cong_nghe_web.Areas.Admin.Controllers
                     CreatedDate = DateTime.Now
                 };
                 int result = await new ProductDAO().CreateProduct(prod);
-                return Json(new { Success = true, id = 1 }, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = true, id = result }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }

@@ -20,5 +20,21 @@ namespace Models.DAO
         {
             return await db.CONFIGURATIONs.AsNoTracking().Where(x => x.ProductID == id).FirstOrDefaultAsync();
         }
+
+        public async Task<int> CreateConfiguration(CONFIGURATION model)
+        {
+            try
+            {
+                db.CONFIGURATIONs.Add(model);
+                await db.SaveChangesAsync();
+                return model.ConfigID;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+
     }
 }

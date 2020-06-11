@@ -7,6 +7,7 @@
 </button>
 <hr />
 
+
 <form action="#" method="post" id="create-product-form">
     <div class="row">
         <div class="input-field col-lg-2 s12">
@@ -95,12 +96,26 @@
     <button class="btn waves-effect waves-light" type="submit" name="action">
         <span>Submit </span><i class="mdi mdi-send"></i>
     </button>
+    <hr />
+
+
 </form>
+
+
+<div id="123jqk"></div>
+
+<button class="btn btn-sm btn-primary" value="" id="create-configuation" disabled>
+    Create Configuration
+</button>
+<hr />
 
 <script src="~/Areas/Admin/assets/js/sweetalert.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script>
-        $(document).ready(function () {
+
+    $(document).ready(function () {
+        
+        let getid = 0;
             $('select').material_select();
 
             $("#status-checkbox").click(function () {
@@ -163,8 +178,24 @@
                         contentType: "application/json",
                         success: function (response) {
                             if (response.Success) {
+                                //console.log(response);
+                                check = true;
                                 swal("Created !", "", "success");
-                                window.location.href = "@Url.Action("ProductList", "Product")";
+                                $("#finish").attr("disabled", false);
+                                $.get("@Url.Action("CreateConfigurationPartial", "Configuration")", {
+                                    "id": response.id
+                                }, function (data) {
+                                    //console.log(data);
+                                    $("#123jqk").empty();
+                                    $("#123jqk").append(data);
+                                });
+
+                                //$("#create-config").attr("disabled",false);
+                                //window.location.href = "@Url.Action("ProductList", "Product")";
+
+                                $("#product-id-config").val(`${response.id}`);
+
+
                             }
                             else
                                 swal("Create fail !", "", "error");
@@ -174,6 +205,14 @@
                         }
                     });
                 }
+
+
+
+            });
+
+
+        $("#create-configuation").click(function () {
+
             });
         });
 </script>
