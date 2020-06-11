@@ -38,6 +38,8 @@ namespace Models.EF
         [StringLength(255)]
         public string ProductURL { get; set; }
 
+        public int? Viewcount { get; set; }
+
         public bool? ProductStatus { get; set; }
 
         public DateTime? CreatedDate { get; set; }

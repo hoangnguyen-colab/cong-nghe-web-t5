@@ -7,7 +7,7 @@
 <link href="~/Areas/Admin/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
 <div class="slider-area">
-    @*<div class="slider-active owl-carousel">
+    <div class="slider-active owl-carousel">
         <div class="single-slider slider-1" style="background-image: url(/Assets/img/slider/slider-bg.jpg)">
             <div class="container">
                 <div class="slider-content slider-animated-1">
@@ -57,7 +57,27 @@
             <li class="twitter"><a href="#"><i class="icofont icofont-social-twitter"></i></a></li>
             <li class="pinterest"><a href="#"><i class="icofont icofont-social-pinterest"></i></a></li>
         </ul>
-    </div>*@
+    </div>
+</div>
+
+<div class="blog-area pt-150 pb-110">
+    <div class="container">
+        <div class="section-title text-center mb-60">
+            <h2>Được Xem Nhiều</h2>
+        </div>
+        <div class="row" id="top-view-product">
+        </div>
+    </div>
+</div>
+
+<div class="blog-area pt-150 pb-110">
+    <div class="container">
+        <div class="section-title text-center mb-60">
+            <h2>Sản phẩm mới nhất</h2>
+        </div>
+        <div class="row" id="newest-product">
+        </div>
+    </div>
 </div>
 
 <div class="overview-area pt-135">
@@ -148,6 +168,17 @@
     <script src="~/Areas/Admin/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function () {
+            $.post("@Url.Action("SelectTop", "Shop")", {
+                "cond": "top"
+            }, function (data) {
+                $("#top-view-product").append(data);
+            });
+
+            $.post("@Url.Action("SelectTop", "Shop")", {
+                "cond": "newest"
+            }, function (data) {
+                $("#newest-product").append(data);
+            });
 
             $.get("https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true", function (data) {
                 var html = $("#covid-data");

@@ -14,25 +14,6 @@ namespace cong_nghe_web.Areas.Admin.Controllers
     [RouteArea("Admin")]
     public class ProductController : BaseController
     {
-        /// <summary>
-        /// Product
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        //[HttpPost]
-        //public ActionResult DeleteProduct(int id)
-        //{
-        //    if (new ProductDAO().LoadByID(id) == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    if (!(new ProductDAO().Delete(id)))
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return RedirectToAction("ProductList");
-        //}
-
         [HttpPost]
         public async Task<JsonResult> DeleteProduct(int id)
         {
@@ -90,6 +71,9 @@ namespace cong_nghe_web.Areas.Admin.Controllers
                     CreatedDate = DateTime.Now
                 };
                 int result = await new ProductDAO().CreateProduct(prod);
+                if (result == 0)
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
                 return Json(new { Success = true, id = result }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);

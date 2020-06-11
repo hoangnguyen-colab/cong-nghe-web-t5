@@ -16,6 +16,16 @@ namespace Models.DAO
             db = new ShopDienThoaiDbContext();
         }
 
+        public async Task<List<PRODUCT>> SelectCondition(string cond, int number)
+        {
+            if (cond.Equals("top"))
+                return await db.PRODUCTs.OrderBy(x => x.Viewcount).Take(number).ToListAsync();
+            else if (cond.Equals("newest"))
+                return await db.PRODUCTs.OrderByDescending(x => x.CreatedDate).Take(number).ToListAsync();
+            return null;
+
+        }
+
         public async Task<int> CreateProduct(PRODUCT model)
         {
             try
@@ -42,7 +52,8 @@ namespace Models.DAO
                 db.PRODUCTs.Remove(prod);
                 await db.SaveChangesAsync();
                 return true;
-            } catch
+            }
+            catch
             {
                 return false;
             }
@@ -51,6 +62,24 @@ namespace Models.DAO
         public async Task<PRODUCT> LoadByID(int ID)
         {
             return await db.PRODUCTs.FindAsync(ID);
+        }
+
+        public async Task<int> UpdateViewCount(int ID)
+        {
+            try
+            {
+                var prod = await db.PRODUCTs.FindAsync(ID);
+                if (prod == null)
+                    return 0;
+
+                prod.Viewcount += 1;
+                await db.SaveChangesAsync();
+                return prod.ProductID;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public async Task<List<PRODUCT>> LoadProduct()

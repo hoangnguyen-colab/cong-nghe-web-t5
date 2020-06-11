@@ -21,6 +21,12 @@ namespace Models.EF
 
         public decimal? Total { get; set; }
 
+        [StringLength(20)]
+        public string CustomerPhone { get; set; }
+
+        [StringLength(255)]
+        public string CustomerAddress { get; set; }
+
         public int? OrderStatusID { get; set; }
 
         public int? CustomerID { get; set; }

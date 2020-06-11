@@ -395,6 +395,7 @@
     <Content Include="Views\Shop\ShopCategory.cshtml" />
     <Content Include="Views\Shop\ShopPartial.cshtml" />
     <Content Include="Views\Shop\ConfigDetail.cshtml" />
+    <Content Include="Views\Shop\SelectTop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\assets\plugins\cropper\" />

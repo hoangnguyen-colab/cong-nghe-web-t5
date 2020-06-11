@@ -39,11 +39,11 @@ namespace cong_nghe_web.Controllers
         {
             try
             {
-                var prod = await new ProductDAO().LoadByID(id);
+                var dao = new ProductDAO();
+                var prod = await dao.LoadByID(id);
                 if (prod == null)
-                {
                     return HttpNotFound();
-                }
+                await dao.UpdateViewCount(prod.ProductID);
                 return View(prod);
             }
             catch
@@ -83,6 +83,14 @@ namespace cong_nghe_web.Controllers
         public async Task<JsonResult> GetProductName(string prefix)
         {
             return Json(new { name = await new ProductDAO().LoadName(prefix) }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SelectTop(string cond)
+        {
+            int top = 8;
+            var list = await new ProductDAO().SelectCondition(cond, top);
+            return PartialView("SelectTop", list);
         }
     }
 }

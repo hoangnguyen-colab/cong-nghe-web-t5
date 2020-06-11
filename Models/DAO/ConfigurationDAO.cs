@@ -25,6 +25,9 @@ namespace Models.DAO
         {
             try
             {
+                if (db.PRODUCTs.FindAsync(model.ProductID) == null)
+                    return 0;
+
                 db.CONFIGURATIONs.Add(model);
                 await db.SaveChangesAsync();
                 return model.ConfigID;
@@ -34,7 +37,5 @@ namespace Models.DAO
                 return 0;
             }
         }
-
-
     }
 }

@@ -13,19 +13,20 @@ namespace cong_nghe_web.Areas.Admin.Controllers
 {
     public class ConfigurationController : Controller
     {
-        // GET: Admin/Configuration
-        public async Task<ActionResult> CreateConfigurationPartial(int id)
+        [HttpPost]
+        public ActionResult CreateConfigurationPartial()
         {
-            return PartialView("CreateConfigurationPartial",id);
+            return PartialView("CreateConfigurationPartial");
         }
 
+        [HttpPost]
         public async Task<JsonResult> CreateConfiguration(CONFIGURATION model)
         {
             if (ModelState.IsValid)
             {
                 var config = new CONFIGURATION
                 {
-                    ProductID = model.ConfigID,
+                    ProductID = model.ProductID,
                     OSName = model.OSName,
                     OSVersion = model.OSVersion,
                     SizeDisplay = model.SizeDisplay,
@@ -38,10 +39,12 @@ namespace cong_nghe_web.Areas.Admin.Controllers
                     Battery = model.Battery
                 };
                 int result = await new ConfigurationDAO().CreateConfiguration(config);
+                if (result == 0)
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+
                 return Json(new { Success = true, id = result }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

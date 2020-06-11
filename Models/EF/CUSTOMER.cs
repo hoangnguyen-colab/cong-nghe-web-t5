@@ -35,6 +35,9 @@ namespace Models.EF
         [StringLength(20)]
         public string CustomerPhone { get; set; }
 
+        [StringLength(255)]
+        public string CustomerAddress { get; set; }
+
         public DateTime? CreatedDate { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
