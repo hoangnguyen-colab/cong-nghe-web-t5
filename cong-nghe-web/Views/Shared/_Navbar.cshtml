@@ -26,35 +26,35 @@
                                     <ul>
                                         <li><a href="@Url.Action("Index", "Home")">home</a></li>
                                         <li>
-                                            <a href="@Url.Action("Shop", "Shop")">phone</a>
+                                            <a href="@Url.Action("Shop", "Shop")">sản phẩm</a>
                                             <ul class="dropdown partial-content" data-url="@Url.Action("NavbarCategory", "Home")">
                                                 <li><a>Loading</a></li>
                                             </ul>
                                         </li>
                                         <li class="active">
-                                            <a href="@Url.Action("About", "Home")">about</a>
+                                            <a href="@Url.Action("About", "Home")">về tôi</a>
                                         </li>
-                                        <li><a href="@Url.Action("Contact", "Home")">contact</a></li>
+                                        <li><a href="@Url.Action("Contact", "Home")">liên hệ</a></li>
                                         @if (!string.IsNullOrEmpty(cookieName))
                                         {
                                             <li>
                                                 <a href="javascript:void(0);">
-                                                    Hello @cookieName
+                                                    Xin chào @cookieName
                                                 </a>
                                                 <ul class="dropdown">
                                                     <li>
                                                         <a href="@Url.Action("CustomerProfile", "Customer", new { username = cookieName })">
-                                                            profile
+                                                            thông tin tài khoản
                                                         </a>
                                                     </li>
-                                                    <li><a href="@Url.Action("Logout", "Customer")">logout</a></li>
+                                                    <li><a href="@Url.Action("Logout", "Customer")">đăng xuất</a></li>
                                                 </ul>
                                             </li>
                                         }
                                         else
                                         {
                                             <li>
-                                                <a href="@Url.Action("Login", "Customer")">login</a>
+                                                <a href="@Url.Action("Login", "Customer")">đăng nhập</a>
                                             </li>
                                         }
                                     </ul>
@@ -72,36 +72,36 @@
                             <ul class="menu-overflow">
                                 <li><a href="@Url.Action("Index", "Home")">home</a></li>
                                 <li>
-                                    <a href="@Url.Action("Shop", "Shop")">phone</a>
+                                    <a href="@Url.Action("Shop", "Shop")">sản phẩm</a>
                                     <ul class="dropdown partial-content" data-url="@Url.Action("NavbarCategory", "Home")">
                                         <li><a>Loading</a></li>
                                     </ul>
                                 </li>
                                 <li class="active">
-                                    <a href="@Url.Action("About", "Home")">about</a>
+                                    <a href="@Url.Action("About", "Home")">về tôi</a>
                                 </li>
-                                <li><a href="@Url.Action("Contact", "Home")">contact</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">liên hệ</a></li>
                                 <li>
-                                    <a href="@Url.Action("Cart", "Cart")">cart</a>
+                                    <a href="@Url.Action("Cart", "Cart")">giỏ hàng</a>
                                 </li>
                                 @if (!string.IsNullOrEmpty(cookieName))
                                 {
                                     <li>
-                                        <a>Hello @cookieName</a>
+                                        <a>xin chào @cookieName</a>
                                         <ul class="dropdown">
                                             <li>
                                                 <a href="@Url.Action("CustomerProfile", "Customer", new { username = cookieName })">
-                                                    profile
+                                                    thông tin tài khoản
                                                 </a>
                                             </li>
-                                            <li><a href="@Url.Action("Logout", "Customer")">logout</a></li>
+                                            <li><a href="@Url.Action("Logout", "Customer")">đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 }
                                 else
                                 {
                                     <li>
-                                        <a href="@Url.Action("Login", "Customer")">login</a>
+                                        <a href="@Url.Action("Login", "Customer")">đăng nhập</a>
                                     </li>
                                 }
                             </ul>

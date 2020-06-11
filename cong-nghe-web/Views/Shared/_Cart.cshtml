@@ -4,7 +4,7 @@
     <button class="icon-cart">
         <i class="ti-shopping-cart"></i>
         <span class="count-style">@Model.Count()</span>
-        <span class="count-price-add">Cart</span>
+        <span class="count-price-add">Giỏ hàng</span>
     </button>
     <div class="shopping-cart-content">
         @if (Model.Count() != 0)
@@ -16,29 +16,33 @@
                     subtotal = 0;
                     <li class="single-shopping-cart">
                         <div class="shopping-cart-img">
-                            <a href="#">
-                                <img alt="" src="@item.product.ProductImage" style="width: 80px;">
+                            <a href="@Url.Action("Detail", "Shop", new { id = item.product.ProductID, url = item.product.ProductURL })">
+                                <img alt="@item.product.ProductName" src="@item.product.ProductImage" style="width: 80px;">
                             </a>
                         </div>
                         <div class="shopping-cart-title">
-                            <h3><a href="#">@item.product.ProductName</a></h3>
+                            <h3>
+                                <a href="@Url.Action("Detail", "Shop", new { id = item.product.ProductID, url = item.product.ProductURL })">
+                                    @item.product.ProductName
+                                </a>
+                            </h3>
                             @if (item.product.PromotionPrice.HasValue)
                             {
                                 subtotal = item.product.PromotionPrice.Value * item.quantity;
                                 total += subtotal;
                                 <span>
-                                    Price: @subtotal.ToString("#,##0")₫
+                                    Giá: @subtotal.ToString("#,##0")₫
                                 </span>
                             }
                             else
                             {
                                 subtotal = item.product.ProductPrice * item.quantity;
                                 total += subtotal;
-                                <span>
-                                    Price: @subtotal.ToString("#,##0")₫
-                                </span>
+                        <span>
+                            Giá: @subtotal.ToString("#,##0")₫
+                        </span>
                             }
-                            <span class="qty">Qty: @item.quantity</span>
+                            <span class="qty">SL: @item.quantity</span>
                         </div>
                         <div class="shopping-cart-delete">
                             <a href="@Url.Action("Delete", "Cart", new { id = item.product.ProductID })" id="cart-del-btn">
@@ -49,20 +53,20 @@
                 }
             </ul>
             <div class="shopping-cart-total">
-                <h4>total: <span>$@total.ToString("#,##0")₫</span></h4>
+                <h4>tổng: <span>@total.ToString("#,##0")₫</span></h4>
             </div>
             <div class="shopping-cart-btn">
-                <a class="btn-style cr-btn" href="@Url.Action("Cart", "Cart")">view cart</a>
+                <a class="btn-style cr-btn" href="@Url.Action("Cart", "Cart")">chi tiết</a>
             </div>
             <div class="shopping-cart-btn">
-                <a class="btn-style cr-btn" href="@Url.Action("Checkout", "Cart")">checkout</a>
+                <a class="btn-style cr-btn" href="@Url.Action("Checkout", "Cart")">thanh toán</a>
             </div>
         }
         else
         {
-            <h2 class="text-center">Cart Empty</h2>
+            <h2 class="text-center">Giỏ Hàng Trống</h2>
             <div class="shopping-cart-btn">
-                <a class="btn-style cr-btn" href="@Url.Action("Shop", "Shop")">start shopping</a>
+                <a class="btn-style cr-btn" href="@Url.Action("Shop", "Shop")">bắt đầu mua hàng</a>
             </div>
         }
     </div>

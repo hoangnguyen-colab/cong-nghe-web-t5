@@ -9,13 +9,13 @@
 <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
-            <h2>Shop Page</h2>
+            <h2>của hàng</h2>
             <ul>
                 <li>
                     <a href="@Url.Action("Index", "Home")">home</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Shop", "Shop")">Shop</a>
+                    <a href="@Url.Action("Shop", "Shop")">của hàng</a>
                 </li>
                 <li>@ViewBag.brand.BrandName</li>
             </ul>
@@ -29,19 +29,19 @@
             <div class="col-lg-3">
                 <div class="product-sidebar-area pr-60">
                     <div class="sidebar-widget pb-55">
-                        <h3 class="sidebar-widget">Search Products</h3>
+                        <h3 class="sidebar-widget">Tìm kiếm</h3>
                         <div class="sidebar-search">
                             <form action="@Url.Action("Shop", "Shop")" method="get">
-                                <input class="search-box" type="text" placeholder="Search Products..." name="search" id="search-product">
+                                <input class="search-box" type="text" placeholder="Tìm kiếm..." name="search" id="search-product">
                                 <button type="submit"><i class="ti-search"></i></button>
                             </form>
                         </div>
                     </div>
                     <div class="sidebar-widget pb-50">
-                        <h3 class="sidebar-widget">by categories</h3>
+                        <h3 class="sidebar-widget">Lọc theo hãng</h3>
                         <div class="widget-categories">
                             <ul id="category-content">
-                                <li><a href="@Url.Action("Shop", "Shop")">All</a></li>
+                                <li><a href="@Url.Action("Shop", "Shop")">Tất cả</a></li>
                             </ul>
                         </div>
                     </div>
@@ -59,10 +59,11 @@
                         <div class="sorting sorting-bg-1">
                             <form>
                                 <select class="select" id="sort-filter">
-                                    <option value="">Default softing </option>
-                                    <option value="name_asc">Name A -> Z</option>
-                                    <option value="price_asc">Price lower first</option>
-                                    <option value="price_desc">Price higher first</option>
+                                    <option value="default">Mặc định </option>
+                                    <option value="name_asc">Tên A -> Z</option>
+                                    <option value="name_desc">Tên Z -> A</option>
+                                    <option value="price_asc">Giá thấp nhất</option>
+                                    <option value="price_desc">Giá cao nhất</option>
                                 </select>
                             </form>
                         </div>
@@ -82,7 +83,7 @@
                 <!--Load Btn-->
                 <div class="paginations text-center mt-20">
                     <div class="btn">
-                        <button id="load-more">Load More</button>
+                        <button id="load-more">Tải thêm</button>
                     </div>
                 </div>
             </div>

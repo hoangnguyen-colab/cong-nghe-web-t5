@@ -8,12 +8,12 @@
 <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
-            <h2>checkout page</h2>
+            <h2>thanh toán</h2>
             <ul>
                 <li>
                     <a href="@Url.Action("Index", "Home")">home</a>
                 </li>
-                <li>checkout</li>
+                <li>thanh toán</li>
             </ul>
         </div>
     </div>
@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="coupon-accordion">
                     <h3>
-                        Checkout as @customer.CustomerName
+                        Thanh toán với tư cách @customer.CustomerName !!!
                     </h3>
                 </div>
             </div>
@@ -116,14 +116,14 @@
             </div>
             <div class="col-lg-6 col-md-12 col-12">
                 <div class="your-order">
-                    <h3>Your order</h3>
+                    <h3>Đơn hàng của bạn:</h3>
                     <div class="your-order-table table-responsive">
                         @{ decimal total = 0, subtotal = 0; }
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-name">Product</th>
-                                    <th class="product-total">Total</th>
+                                    <th class="product-name">sản phẩm</th>
+                                    <th class="product-total">giá</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,12 +157,8 @@
                                 }
                             </tbody>
                             <tfoot>
-                                <tr class="cart-subtotal">
-                                    <th>Cart Subtotal</th>
-                                    <td><span class="amount">@total.ToString("#,##0")₫</span></td>
-                                </tr>
                                 <tr class="order-total">
-                                    <th>Order Total</th>
+                                    <th>Tổng</th>
                                     <td>
                                         <strong><span class="amount">@total.ToString("#,##0")₫</span></strong>
                                     </td>
@@ -206,7 +202,7 @@
                             </div>
                             <h5 class="text-center text-danger" id="checkout-info-text"></h5>
                             <div class="order-button-payment">
-                                <input type="submit" value="Place order" id="checkout-btn" />
+                                <input type="submit" value="Thanh toán" id="checkout-btn" />
                             </div>
                         </div>
                     </div>
@@ -225,18 +221,18 @@
                     url: "@Url.Action("SubmitCheckout", "Cart")",
                     success: function (response) {
                         if (response.Success) {
-                            $('#checkout-btn').val("Checkout Success").css("background", "#00ff7f").css("color", "#000");
+                            $('#checkout-btn').val("Thanh toán thành công").css("background", "#00ff7f").css("color", "#000");
                             window.setTimeout(function () {
                                 window.location.href =
                                     "@Url.Action("CustomerProfile", "Customer", new { username = customer.CustomerUsername })";
                             }, 1000);
 
                         } else {
-                            $('#checkout-btn').val("Fail to checkout").css("background", "#f51d1a");
+                            $('#checkout-btn').val("Thanh toán thất bại").css("background", "#f51d1a");
                         }
                     },
                     error: function () {
-                        $('#checkout-btn').val("Fail to checkout").css("background", "#f51d1a");
+                        $('#checkout-btn').val("Đã có lỗi khi thanh toán").css("background", "#f51d1a");
                     }
                 });
             });

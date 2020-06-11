@@ -6,12 +6,12 @@
 <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
-            <h2>Cart page</h2>
+            <h2>giỏ hàng</h2>
             <ul>
                 <li>
                     <a href="@Url.Action("Index", "Home")">home</a>
                 </li>
-                <li>Cart</li>
+                <li>giỏ hàng</li>
             </ul>
         </div>
     </div>
@@ -28,12 +28,12 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="product-name text-center">products</th>
-                                    <th class="product-price text-center">products name</th>
-                                    <th class="product-name text-center">price</th>
-                                    <th class="product-price text-center">quantity</th>
-                                    <th class="product-quantity text-center">total</th>
-                                    <th class="product-subtotal text-center">delete</th>
+                                    <th class="product-name text-center">#</th>
+                                    <th class="product-price text-center">Tên</th>
+                                    <th class="product-name text-center">Đơn giá</th>
+                                    <th class="product-price text-center">Số lượng</th>
+                                    <th class="product-quantity text-center">Tổng</th>
+                                    <th class="product-subtotal text-center">Tùy chọn</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,13 +42,13 @@
                                     subtotal = 0;
                                     <tr>
                                         <td class="product-thumbnail text-center">
-                                            <a href="@Url.Action("Detail", "Shop", new { id = item.ProductID, url = item.ProductURL })">
+                                            <a href="@Url.Action("Detail", "Shop", new { id = item.product.ProductID, url = item.product.ProductURL })">
                                                 <img src="@item.product.ProductImage" alt="" style="width: 120px;
 ">
                                             </a>
                                         </td>
                                         <td class="product-name text-center">
-                                            <a href="@Url.Action("Detail", "Shop", new { id = item.ProductID, url = item.ProductURL })">
+                                            <a href="@Url.Action("Detail", "Shop", new { id = item.product.ProductID, url = item.product.ProductURL })">
                                                 @item.product.ProductName
                                             </a>
                                         </td>
@@ -106,15 +106,8 @@
                     <div class="cart-shiping-update">
                         <div class="cart-shipping">
                             <a class="btn-style cr-btn" href="@Url.Action("Shop", "Shop")">
-                                <span>continue shopping</span>
+                                <span>tiếp tục mua hàng</span>
                             </a>
-                        </div>
-                        <div class="update-checkout-cart">
-                            <div class="update-cart">
-                                <a class="btn-style cr-btn" href="@Url.Action("Checkout", "Cart")">
-                                    <span>checkout</span>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,37 +115,30 @@
 
             <div class="row">
                 <div class="col-md-7 col-sm-6">
-                    <div class="discount-code">
-                        <h4>enter your discount code</h4>
-                        <div class="coupon">
-                            <input type="text">
-                            <input class="cart-submit" type="submit" value="enter">
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-5 col-sm-6">
                     <div class="shop-total">
-                        <h3>cart total</h3>
+                        <h3>chi tiết giỏ hàng</h3>
                         <ul>
                             <li>
-                                sub total
+                                đơn giá
                                 <span>@total.ToString("#,##0")₫</span>
                             </li>
                             <li class="order-total">
-                                shipping
+                                vận chuyển
                                 <span>0</span>
                             </li>
                             <li>
-                                order total
+                                tổng đơn hàng
                                 <span>@total.ToString("#,##0")₫</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="cart-btn text-center mb-15">
-                        <a href="@Url.Action("Checkout", "Cart")">payment</a>
-                    </div>
                     <div class="continue-shopping-btn text-center">
-                        <a href="@Url.Action("Shop", "Shop")">continue shopping</a>
+                        <a href="@Url.Action("Shop", "Shop")">tiếp tục mua hàng</a>
+                    </div>
+                    <div class="cart-btn text-center mb-15">
+                        <a href="@Url.Action("Checkout", "Cart")">thanh toán</a>
                     </div>
                 </div>
             </div>
@@ -160,14 +146,15 @@
         else
         {
             <h1 class="text-center">
-                Cart Empty
+                Giỏ hàng trống
+                <img src="~/Assets/img/cart/empty-cart.png"/>
             </h1>
             <div class="row">
                 <div class="col-md-12">
                     <div class="cart-shiping-update">
                         <div class="cart-shipping">
                             <a class="btn-style cr-btn" href="@Url.Action("Shop", "Shop")">
-                                <span>start shopping</span>
+                                <span>bắt đầu mua hàng...</span>
                             </a>
                         </div>
                     </div>

@@ -252,6 +252,7 @@
     <Content Include="Assets\img\cart\cart-1.jpg" />
     <Content Include="Assets\img\cart\cart-2.jpg" />
     <Content Include="Assets\img\cart\cart-3.jpg" />
+    <Content Include="Assets\img\cart\empty-cart.png" />
     <Content Include="Assets\img\favicon.png" />
     <Content Include="Assets\img\icon-img\1.png" />
     <Content Include="Assets\img\icon-img\3.png" />

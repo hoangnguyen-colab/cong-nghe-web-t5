@@ -7,13 +7,13 @@
 <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
-            <h2>product details </h2>
+            <h2>@Model.ProductName</h2>
             <ul>
                 <li>
                     <a href="@Url.Action("Index", "Home")">home</a>
                 </li>
                 <li>
-                    <a href="@Url.Action("Shop", "Shop")">Shop</a>
+                    <a href="@Url.Action("Shop", "Shop")">cửa hàng</a>
                 </li>
                 <li>
                     <a href="@Url.Action("ShopCategory", "Shop", new { id = Model.BRAND.BrandID, url = Model.BRAND.BrandURL})">
@@ -58,10 +58,9 @@
                         <i class="fa fa-star reting-color"></i>
                         <i class="fa fa-star reting-color"></i>
                         <i class="fa fa-star reting-color"></i>
-                        <span> ( 01 Customer Review )</span>
                     </div>
                     <div class="product-price">
-                        <h5 class="pd-sub-title">Product Price</h5>
+                        <h5 class="pd-sub-title">Giá</h5>
                         @if (Model.PromotionPrice.HasValue)
                         {
                             <div class="original-price">@Model.PromotionPrice.Value.ToString("#,##0")₫</div>
@@ -75,7 +74,7 @@
                         }
                     </div>
                     <div class="product-overview">
-                        <h5 class="pd-sub-title">Product Overview</h5>
+                        <h5 class="pd-sub-title">Tổng quan</h5>
                         <p>@Model.ProductDescription</p>
                     </div>
                     <div class="quickview-plus-minus">
@@ -85,7 +84,7 @@
                         <div class="quickview-btn-cart">
                             <a class="btn-style cr-btn" href="javascrip:void(0);" id="submit-btn">
                                 <span>
-                                    <i class="ti-shopping-cart" id="btn-icon"></i> add to cart
+                                    <i class="ti-shopping-cart" id="btn-icon"></i> thêm vào giỏ hàng
                                 </span>
                             </a>
                         </div>
@@ -93,12 +92,12 @@
                     </div>
                     <div id="config-detail">
                         <div class="product-overview">
-                            <h5 class="pd-sub-title">Product Detail</h5>
+                            <h5 class="pd-sub-title">Chi tiết</h5>
 
                         </div>
                     </div>
                     <div class="product-share">
-                        <h5 class="pd-sub-title">Share</h5>
+                        <h5 class="pd-sub-title">Chia sẻ</h5>
                         <ul>
                             <li>
                                 <a href="#"><i class="icofont icofont-social-facebook"></i></a>
@@ -142,7 +141,7 @@
                     success: function (response) {
                         if (response.Success == true) {
                             $('#submit-btn').addClass("btn-style--success");
-                            $('#submit-btn span').empty().append('<i class="ti-check"></i> Success');
+                            $('#submit-btn span').empty().append('<i class="ti-check"></i> Thành công');
 
                             $.get("@Url.Action("CartPartial", "Cart")",
                                 function (data) {
@@ -153,25 +152,13 @@
                                     });
                                 }
                             );
-
-                            //$("#alerts").append(`<div class="alert
-                            //                    alert-success" style="width: 175px;
-                            //                    role="alert">
-                            //                    Success
-                            //                    </div>`);
-                            //fade();
                         } else {
                             $('#submit-btn').addClass("btn-style--fail");
-                            $('#submit-btn span').empty().append('<i class="ti-close"></i> Add Fail');
-                            //$("#alerts").append(`<div class="alert alert-danger" style="width: 175px; role="alert">Failed</div>`);
-                            //fade();
+                            $('#submit-btn span').empty().append('<i class="ti-close"></i> Không thành công');
                         }
                     }
                 });
             });
-            function fade() {
-                $('.alert').delay(3000).fadeOut();
-            }
         });
     </script>
 }

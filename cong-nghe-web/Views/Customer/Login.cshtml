@@ -3,6 +3,8 @@
     ViewBag.Title = "Login";
 }
 
+<link href="~/Assets/loading-spinner.css" rel="stylesheet" />
+
 <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
@@ -45,7 +47,14 @@
                                                 <label>Remember me</label>
                                                 <a href="#">Forgot Password?</a>
                                             </div>
-                                            <button type="submit" class="btn-style cr-btn"><span>Login</span></button>
+                                            <button type="submit" class="btn-style cr-btn">
+                                                <div class="loader" id="login-loader" style="max-height: 50px;">
+                                                    <svg class="circular">
+                                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
+                                                    </svg>
+                                                </div>
+                                                <span id="login-button-text">Login</span>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -62,9 +71,17 @@
                                         <input type="text" id="reg-fullname" name="reg-fullname" placeholder="Full Name*">
                                         <input type="text" id="reg-email" name="reg-email" placeholder="Email Address">
                                         <input type="tel" id="reg-phone" name="reg-phone" placeholder="Phone Number">
+                                        <input type="text" id="reg-address" name="reg-address" placeholder="Address">
                                         <div class="button-box">
                                             <h5 class="text-danger info-register-text text-center"></h5>
-                                            <button type="submit" class="btn-style cr-btn"><span>Register</span></button>
+                                            <button type="submit" class="btn-style cr-btn">
+                                                <div class="loader" id="reg-loader" style="max-height: 50px;">
+                                                    <svg class="circular">
+                                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle>
+                                                    </svg>
+                                                </div>
+                                                <span id="reg-button-text">Register</span>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -81,6 +98,8 @@
     <script src="~/Scripts/jquery.validate.js"></script>
     <script>
         $(document).ready(function () {
+            $("#login-loader").hide();
+            $("#reg-loader").hide();
             //--login form
             $("#login-form").validate({
                 rules: {
@@ -98,6 +117,8 @@
                     },
                 },
                 submitHandler: function () {
+                    $("#login-loader").show();
+                    $("#login-button-text").hide();
                     var data = {
                         "CustomerUsername": $("#log-name").val(),
                         "CustomerPassword": $("#log-password").val(),
@@ -110,16 +131,20 @@
                         dataType: "json",
                         contentType: "application/json",
                         success: function (response) {
+                            $("#login-loader").hide();
+                            $("#login-button-text").show();
                             if (response.Success) {
+                                $("#login-button-text").text("Login Success");
                                 let url = "@Url.Action("CustomerProfile", "Customer", new { username = "cus-username" })";
                                 url = url.replace("cus-username", response.Username);
                                 window.location.href = url;
                             }
                             else
-                                $('.info-login-text').text("Login Fail");
+                                $("#login-button-text").text("Login Fail");
                         },
                         error: function (response) {
-                            console.log("error");
+                            $("#login-loader").hide();
+                            $("#login-button-text").text("Error while logging in!");
                         }
                     });
                 }
@@ -158,12 +183,15 @@
                     }
                 },
                 submitHandler: function () {
+                    $("#reg-loader").show();
+                    $("#reg-button-text").hide();
                     var data = {
                         "CustomerUsername": $("#reg-name").val(),
                         "CustomerPassword": $("#reg-password").val(),
                         "CustomerName": $("#reg-fullname").val(),
                         "CustomerPhone": $("#reg-phone").val(),
-                        "CustomerEmail": $("#reg-email").val()
+                        "CustomerEmail": $("#reg-email").val(),
+                        "CustomerAddress": $("#reg-address").val()
                     };
                     $.ajax({
                         url: "@Url.Action("RegisterCustomer", "Customer")",
@@ -172,12 +200,19 @@
                         dataType: "json",
                         contentType: "application/json",
                         success: function (response) {
+                            $("#reg-loader").hide();
+                            $("#reg-button-text").show();
                             if (response.ReturnID == 1)
-                                $('.info-register-text').text("Create Success");
+                                $("#reg-button-text").text("Create Success");
                             if (response.ReturnID == 0)
-                                $('.info-register-text').text("Username has already exist");
+                                $("#reg-button-text").text("Username has already exist");
                             else if (response.ReturnID == 2)
-                                $('.info-register-text').text("Create Fail");
+                                $("#reg-button-text").text("Create Fail");
+                        },
+                        error: function (response) {
+                            $("#reg-loader").hide();
+                            $("#reg-button-text").show();
+                            $("#reg-button-text").text("Error while register your account!");
                         }
                     });
                 }

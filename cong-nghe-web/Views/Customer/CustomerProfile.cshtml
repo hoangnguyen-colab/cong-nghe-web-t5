@@ -16,7 +16,7 @@
                 <li>
                     <a href="@Url.Action("Index", "Home")">home</a>
                 </li>
-                <li>profile details</li>
+                <li>thông tin khách hàng</li>
             </ul>
         </div>
     </div>
@@ -43,13 +43,13 @@
                         <div class="col-12">
                             <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders_tab" role="tab" aria-controls="orders_tab" aria-selected="true">Order</a>
+                                    <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders_tab" role="tab" aria-controls="orders_tab" aria-selected="true">Đơn hàng</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="false">Basic Info</a>
+                                    <a class="nav-link" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="false">Thông tin</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="something-tab" data-toggle="tab" href="#something_tab" role="tab" aria-controls="something_tab" aria-selected="false">Something</a>
+                                    <a class="nav-link" id="something-tab" data-toggle="tab" href="#something_tab" role="tab" aria-controls="something_tab" aria-selected="false">Updating</a>
                                 </li>
                             </ul>
                             <!--Tab-->
@@ -57,16 +57,16 @@
                                 <div class="tab-pane fade show active" id="orders_tab" role="tabpanel" aria-labelledby="orders-tab">
                                     <div class="row">
                                         <div class="col-sm">
-                                            <h5>Filter:</h5>
+                                            <h5>Lọc:</h5>
                                         </div>
                                         <div class="col-lg-11">
                                             <select id="status-select">
-                                                <option value="0">All</option>
+                                                <option value="0">Tất cả</option>
                                             </select>
                                         </div>
                                     </div>
                                     <br />
-                                    <h5>Click (+) button to show more information!</h5>
+                                    <h5>Nhấn (+) để hiển thị chi tiết!</h5>
 
                                     <div class="loader" id="loader">
                                         <svg class="circular">
@@ -175,25 +175,32 @@
     </script>
 }
 
+<script src="~/Areas/Admin/assets/js/sweetalert.min.js"></script>
 <script>
     function CancelOrder(id) {
-        var cfirm = confirm(`Cancel order with id: ${id}!`);
-        if (cfirm == true) {
-            $.ajax({
-                type: "post",
-                url: `@Url.Action("CancelOrder", "Order")`,
-                data: "OrderID=" + id,
-                success: function (response) {
-                    if (response.Success) {
-                        window.location.reload();
-                    } else {
+        swal({
+            title: `Cancel order with id: ${id}?`,
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "post",
+                    url: `@Url.Action("CancelOrder", "Order")`,
+                    data: "OrderID=" + id,
+                    success: function (response) {
+                        if (response.Success) {
+                            window.location.reload();
+                        } else {
+                            console.log("error");
+                        }
+                    },
+                    error: function () {
                         console.log("error");
                     }
-                },
-                error: function () {
-                    console.log("error");
-                }
-            });
-        };
+                });
+            }
+        });
     };
 </script>
