@@ -141,6 +141,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItemModel.cs" />
+    <Compile Include="Models\CheckoutModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -397,6 +398,7 @@
     <Content Include="Views\Shop\ShopPartial.cshtml" />
     <Content Include="Views\Shop\ConfigDetail.cshtml" />
     <Content Include="Views\Shop\SelectTop.cshtml" />
+    <Content Include="Views\Cart\CheckoutCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\assets\plugins\cropper\" />

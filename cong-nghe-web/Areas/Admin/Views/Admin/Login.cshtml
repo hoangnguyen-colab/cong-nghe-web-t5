@@ -121,7 +121,6 @@
                         "UserUsername": $("#username-signup").val(),
                         "UserPassword": $("#password-signup").val(),
                     };
-                    console.log(data);
                     @*$.ajax({
                         url: "@Url.Action("ValidateAdmin", "Admin")",
                         type: "post",
@@ -166,7 +165,6 @@
                         dataType: "json",
                         contentType: "application/json",
                         success: function (response) {
-                            console.log(response);
                             if (response.Success == true)
                                 window.location.href = "@Url.Action("Index", "Home")";
                             else

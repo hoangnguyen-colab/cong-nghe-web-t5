@@ -58,12 +58,4 @@ namespace cong_nghe_web.Models
         public int CustomerID { get; set; }
         public string CustomerUsername { get; set; }
     }
-    public class CustomerViewModel
-    {
-        public int CustomerID { get; set; }
-        public string CustomerUsername { get; set; }
-        public string CustomerName { get; set; }
-        public string CustomerEmail { get; set; }
-        public string CustomerPhone { get; set; }
-    }
 }

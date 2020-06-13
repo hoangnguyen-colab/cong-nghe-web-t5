@@ -17,14 +17,33 @@ namespace Models.DAO
             db = new ShopDienThoaiDbContext();
         }
 
-        public async Task<int> AddOrder(int CustomerID, decimal total)
+        public async Task<int> AddOrderCustomer(int CustomerID, string name, string address, string phone, decimal total)
         {
             var order = new ORDER
             {
-                Total = total,
-                OrderDate = DateTime.Now,
+                CustomerID = CustomerID,
+                CustomerName = name,
+                CustomerAddress = address,
+                CustomerPhone = phone,
                 OrderStatusID = 1,
-                CustomerID = CustomerID
+                Total = total,
+                OrderDate = DateTime.Now
+            };
+            db.ORDERs.Add(order);
+            await db.SaveChangesAsync();
+            return order.OrderID;
+        }
+
+        public async Task<int> AddOrder(string name, string address, string phone, decimal total)
+        {
+            var order = new ORDER
+            {
+                CustomerName = name,
+                CustomerAddress = address,
+                CustomerPhone = phone,
+                Total = total,
+                OrderStatusID = 1,
+                OrderDate = DateTime.Now
             };
             db.ORDERs.Add(order);
             await db.SaveChangesAsync();

@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<cong_nghe_web.Models.CartItemModel>
 @{
     ViewBag.Title = "Checkout";
+    var customer = ViewData["Customer"] as Models.EF.CUSTOMER;
 }
 
 <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
@@ -23,7 +24,7 @@
             <div class="col-md-12">
                 <div class="coupon-accordion">
                     <h3>
-                        Thanh toán nặc danh! <b><a href="@Url.Action("Login", "Customer")">Đăng nhập ngay</a></b>
+                        Thanh toán với tư cách @customer.CustomerName !!!
                     </h3>
                 </div>
             </div>
@@ -37,25 +38,25 @@
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Họ tên<span class="required">*</span></label>
-                                    <input type="text" placeholder="Họ tên..." name="customer-fullname" id="customer-fullname" />
+                                    <input type="text" placeholder="Họ tên..." value="@customer.CustomerName" name="customer-fullname" id="customer-fullname" />
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Địa chỉ <span class="required">*</span></label>
-                                    <input type="text" placeholder="Địa chỉ..." name="customer-address" id="customer-address" />
+                                    <input type="text" placeholder="Địa chỉ..." value="@customer.CustomerAddress" name="customer-address" id="customer-address" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Điện thoại  <span class="required">*</span></label>
-                                    <input type="tel" placeholder="Điện thoại..." name="customer-phone" id="customer-phone" />
+                                    <input type="tel" placeholder="Điện thoại..." value="@customer.CustomerPhone" name="customer-phone" id="customer-phone" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Email</label>
-                                    <input type="email" placeholder="Email..." name="customer-email" id="customer-email" />
+                                    <input type="email" placeholder="Email..." value="@customer.CustomerEmail" name="customer-email" id="customer-email" />
                                 </div>
                             </div>
                         </div>
@@ -160,39 +161,10 @@
     </div>
 </div>
 
-<div class="modal fade" id="no-account-modal" tabindex="-1" role="dialog" aria-labelledby="no-account-modal-label" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="no-account-modal-label">Chú ý</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Bạn đang thanh toán mà <b>không có tài khoản!</b>
-                Bạn không thể kiểm tra tình trạng hàng trong thời gian đặt hàng...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="go-to-login">Đăng nhập</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tắt</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @section Scripts{
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript">
-        $(window).on('load', function () {
-            $('#no-account-modal').modal('show');
-        });
-
         $(document).ready(function () {
-            $("#go-to-login").click(function () {
-                window.location.href = "@Url.Action("Login", "Customer")";
-            });
-
             $("#checkout-form").validate({
                 rules: {
                     'customer-fullname': "required",
@@ -218,13 +190,17 @@
                     };
                     $.ajax({
                         type: "POST",
-                        url: "@Url.Action("SubmitCheckout", "Cart")",
+                        url: "@Url.Action("SubmitCheckoutCustomer", "Cart")",
                         data: JSON.stringify(data),
                         dataType: "json",
                         contentType: "application/json",
                         success: function (response) {
                             if (response.Success) {
                                 $('#checkout-btn').val("Đặt hàng thành công").css("background", "#00ff7f").css("color", "#000");
+                                window.setTimeout(function () {
+                                    window.location.href =
+                                        "@Url.Action("CustomerProfile", "Customer", new { username = customer.CustomerUsername })";
+                                }, 1000);
                             } else {
                                 $('#checkout-btn').val("Đặt hàng thất bại").css("background", "#f51d1a");
                             }

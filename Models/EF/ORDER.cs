@@ -21,6 +21,9 @@ namespace Models.EF
 
         public decimal? Total { get; set; }
 
+        [StringLength(255)]
+        public string CustomerName { get; set; }
+
         [StringLength(20)]
         public string CustomerPhone { get; set; }
 

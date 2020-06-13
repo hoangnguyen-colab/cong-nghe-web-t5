@@ -18,7 +18,6 @@ namespace cong_nghe_web.Controllers
             return View(await GetCartItem());
         }
 
-        [Authorize]
         [Route("checkout")]
         public async Task<ActionResult> Checkout()
         {
@@ -27,21 +26,67 @@ namespace cong_nghe_web.Controllers
                 return RedirectToAction("Cart", "Cart");
             }
             var customer = HttpContext.User.Identity.Name;
-            CustomerViewModel model = null;
-            if (!string.IsNullOrEmpty(customer))
+            if (string.IsNullOrEmpty(customer))
             {
-                var item = await new CustomerDAO().LoadByUsername(customer);
-                model = new CustomerViewModel()
-                {
-                    CustomerID = item.CustomerID,
-                    CustomerUsername = item.CustomerUsername,
-                    CustomerName = item.CustomerName,
-                    CustomerEmail = item.CustomerEmail,
-                    CustomerPhone = item.CustomerPhone
-                };
+                return View("Checkout", await GetCartItem());
             }
-            ViewData["Customer"] = model;
-            return View(await GetCartItem());
+            var item = await new CustomerDAO().LoadByUsername(customer);
+            ViewData["Customer"] = item;
+            return View("CheckoutCustomer", await GetCartItem());
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<JsonResult> SubmitCheckoutCustomer(CheckoutModel model)
+        {
+            try
+            {
+                var customer = await new CustomerDAO().LoadByUsername(HttpContext.User.Identity.Name);
+                var order = await new OrderDAO().AddOrderCustomer(customer.CustomerID, model.CustomerName, model.CustomerAddress, model.CustomerPhone, await GetTotal());
+                if (order != 0)
+                {
+                    var orderdetail = new OrderDetailDAO();
+                    foreach (var item in (List<CartSession>)Session["cart"])
+                    {
+                        await orderdetail.AddOrderDetail(order, item.ProductID, item.Quantity);
+                    }
+                    Session["cart"] = null;
+                    return Json(new { Success = true, ID = order }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> SubmitCheckout(CheckoutModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var order = await new OrderDAO().AddOrder(model.CustomerName, model.CustomerAddress, model.CustomerPhone, await GetTotal());
+                    if (order != 0)
+                    {
+                        var orderdetail = new OrderDetailDAO();
+                        foreach (var item in (List<CartSession>)Session["cart"])
+                        {
+                            await orderdetail.AddOrderDetail(order, item.ProductID, item.Quantity);
+                        }
+                        Session["cart"] = null;
+                        return Json(new { Success = true, ID = order }, JsonRequestBehavior.AllowGet);
+                    }
+                    return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
@@ -113,36 +158,10 @@ namespace cong_nghe_web.Controllers
             return list;
         }
 
-        [Authorize]
-        [HttpPost]
-        public async Task<JsonResult> SubmitCheckout()
-        {
-            try
-            {
-                var customer = await new CustomerDAO().LoadByUsername(HttpContext.User.Identity.Name);
-                var order = await new OrderDAO().AddOrder(customer.CustomerID, await GetTotal());
-                if (order != 0)
-                {
-                    var orderdetail = new OrderDetailDAO();
-                    foreach (var item in (List<CartSession>)Session["cart"])
-                    {
-                        await orderdetail.AddOrderDetail(order, item.ProductID, item.Quantity);
-                    }
-                    Session["cart"] = null;
-                    return Json(new { Success = true, ID = order }, JsonRequestBehavior.AllowGet);
-                }
-                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
-            }
-            catch
-            {
-                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
         public async Task<decimal> GetTotal()
         {
             decimal total = 0;
-            
+
             var cart = (List<CartSession>)Session["cart"];
             if (cart != null)
             {
@@ -153,7 +172,8 @@ namespace cong_nghe_web.Controllers
                     if (product.PromotionPrice.HasValue)
                     {
                         total += product.PromotionPrice.Value * item.Quantity;
-                    } else
+                    }
+                    else
                     {
                         total += product.ProductPrice * item.Quantity;
                     }

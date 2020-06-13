@@ -83,8 +83,9 @@ CREATE TABLE [ORDER]
     OrderID INT PRIMARY KEY IDENTITY(1, 1),
     OrderDate DATETIME DEFAULT GETDATE(),
     Total DECIMAL(18, 2),
-    CustomerPhone NVARCHAR(20),
-    CustomerAddress NVARCHAR(255),
+    CustomerName NVARCHAR(255) NOT NULL,
+    CustomerPhone NVARCHAR(20) NOT NULL,
+    CustomerAddress NVARCHAR(255) NOT NULL,
 
     OrderStatusID INT REFERENCES [ORDERSTATUS](StatusID),
     CustomerID INT REFERENCES [CUSTOMER](CustomerID)
@@ -111,7 +112,6 @@ CREATE TABLE [ADMIN]
     CreatedDate DATETIME
 )
 GO
-
 
 INSERT INTO [BRAND]
 VALUES

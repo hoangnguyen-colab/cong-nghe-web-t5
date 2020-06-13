@@ -8,19 +8,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OrderID)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CUSTOMER.CustomerUsername)
+                Tên KH
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ORDERSTATU.StatusName)
+                ID KH
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
+                Địa chỉ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Total)
+                Sđt
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Ngày đặt
+            </th>
+            <th>
+                Tổng
             </th>
             <th>Options</th>
         </tr>
@@ -33,22 +42,36 @@
                     @Html.DisplayFor(modelItem => item.OrderID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CUSTOMER.CustomerUsername)
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                @if (item.CustomerID != null)
+                {
+                    <td>@item.CustomerID</td>
+                }
+                else
+                {
+                    <td>null</td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPhone)
                 </td>
                 <td>
                     <select id="orderstatus-@item.OrderID" onchange="return ChangeOrder('@item.OrderID', '@item.OrderStatusID')">
                         <option value="@item.OrderStatusID" selected="selected">@item.ORDERSTATU.StatusName</option>
                         @*@foreach (var stat in ViewBag.Status)
-            {
-                if (stat.StatusID == item.OrderStatusID)
-                {
-                    <option value="@stat.StatusID" selected="selected">@stat.StatusName</option>
-                }
-                else
-                {
-                    <option value="@stat.StatusID">@stat.StatusName</option>
-                }
-            }*@
+                            {
+                                if (stat.StatusID == item.OrderStatusID)
+                                {
+                                    <option value="@stat.StatusID" selected="selected">@stat.StatusName</option>
+                                }
+                                else
+                                {
+                                    <option value="@stat.StatusID">@stat.StatusName</option>
+                                }
+                            }*@
                     </select>
                 </td>
                 <td>
@@ -76,28 +99,24 @@
 <script src="~/Areas/Admin/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function () {
-
-
-
-    @foreach (var item in Model)
-    {
-    <text>
-        $("#save-@item.OrderID").hide();
-        $.get("@Url.Action("StatusList", "Ordered")",
-            {
-                "id": "@item.OrderStatusID"
-            },
-            function (data) {
-                console.log(data);
-                var select = $("#orderstatus-@item.OrderID");
-                for (let i = 0; i < data.length; i++) {
-                    select.append(
-                        `<option value="${data[i].StatusID}">${data[i].StatusName}</option>`);
+        @foreach (var item in Model)
+        {
+        <text>
+            $("#save-@item.OrderID").hide();
+            $.get("@Url.Action("StatusList", "Ordered")",
+                {
+                    "id": "@item.OrderStatusID"
+                },
+                function (data) {
+                    var select = $("#orderstatus-@item.OrderID");
+                    for (let i = 0; i < data.length; i++) {
+                        select.append(
+                            `<option value="${data[i].StatusID}">${data[i].StatusName}</option>`);
+                    }
                 }
-            }
-        );
-    </text>
-    }
+            );
+        </text>
+        }
         $(function () {
             $('#order-table').DataTable()
         });

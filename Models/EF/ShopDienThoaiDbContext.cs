@@ -46,7 +46,6 @@ namespace Models.EF
                 .WithOptional(e => e.PRODUCT)
                 .WillCascadeOnDelete();
         }
-
         public void FixEfProviderServicesProblem()
         {
             var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
