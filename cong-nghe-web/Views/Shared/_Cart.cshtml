@@ -1,14 +1,17 @@
 ﻿@model IEnumerable<cong_nghe_web.Models.CartItemModel>
 
+
+
 <div style="overflow-y: scroll;">
     <button class="icon-cart">
         <i class="ti-shopping-cart"></i>
-        <span class="count-style">@Model.Count()</span>
+        <span id="123qwe" class="count-style">@Model.Count()</span>
         <span class="count-price-add">Giỏ hàng</span>
     </button>
     <div class="shopping-cart-content">
         @if (Model.Count() != 0)
         {
+            int tongsoluong = 0;
             decimal total = 0, subtotal = 0;
             <ul>
                 @foreach (var item in Model)
@@ -28,8 +31,10 @@
                             </h3>
                             @if (item.product.PromotionPrice.HasValue)
                             {
+
                                 subtotal = item.product.PromotionPrice.Value * item.quantity;
                                 total += subtotal;
+                                tongsoluong = tongsoluong + item.quantity;
                                 <span>
                                     Giá: @subtotal.ToString("#,##0")₫
                                 </span>
@@ -38,9 +43,11 @@
                             {
                                 subtotal = item.product.ProductPrice * item.quantity;
                                 total += subtotal;
-                        <span>
-                            Giá: @subtotal.ToString("#,##0")₫
-                        </span>
+                                tongsoluong = tongsoluong + item.quantity;
+
+                                <span>
+                                    Giá: @subtotal.ToString("#,##0")₫
+                                </span>
                             }
                             <span class="qty">SL: @item.quantity</span>
                         </div>
@@ -53,13 +60,20 @@
                 }
             </ul>
             <div class="shopping-cart-total">
-                <h4>tổng: <span>@total.ToString("#,##0")₫</span></h4>
+                <h4>tổng @tongsoluong sản phâm   <span>@total.ToString("#,##0")₫</span></h4>
             </div>
             <div class="shopping-cart-btn">
                 <a class="btn-style cr-btn" href="@Url.Action("Cart", "Cart")">chi tiết</a>
             </div>
             <div class="shopping-cart-btn">
-                <a class="btn-style cr-btn" href="@Url.Action("Checkout", "Cart")">thanh toán</a>
+                @if (tongsoluong > 100)
+                {
+                    <a class="btn-style cr-btn" href="#">Giỏ hàng tối đa 100 sản phẩm, vui lòng bỏ bớt</a>
+                }
+                else
+                {
+                    <a class="btn-style cr-btn" href="@Url.Action("Checkout", "Cart")">thanh toán</a>
+                }
             </div>
         }
         else
@@ -71,3 +85,5 @@
         }
     </div>
 </div>
+
+
