@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Assets/datepicker.min.css" rel="stylesheet" />
+<div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/banner/banner-4.jpg)">
+    <div class="container-fluid">
+        <div class="breadcrumb-content text-center">
+            <h2>date</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "Home")">home</a>
+                </li>
+                <li>date</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="checkout-area pt-130 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="coupon-accordion">
+                    <h3>
+                        Thanh toán nặc danh! <b><a href="@Url.Action("Login", "Customer")">Đăng nhập ngay</a></b>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="datepicker-here" data-timepicker="true" data-time-format='hh:ii aa'></div>
+            <button id="submit-date">Sumit</button>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Assets/datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            
+
+
+            $('#my-element').datepicker([options]);
+            $('#my-element').data('datepicker');
+
+            $picker.datepicker({
+                language: 'en',
+                onRenderCell: function (date, cellType) {
+                    var currentDate = date.getDate();
+                    // Add extra element, if `eventDates` contains `currentDate`
+                    if (cellType == 'day' && eventDates.indexOf(currentDate) != -1) {
+                        return {
+                            html: currentDate + '<span class="dp-note"></span>'
+                        }
+                    }
+                },
+                onSelect: function onSelect(fd, date) {
+                    var title = '', content = ''
+                    // If date with event is selected, show it
+                    if (date && eventDates.indexOf(date.getDate()) != -1) {
+                        title = fd;
+                        content = sentences[Math.floor(Math.random() * eventDates.length)];
+                    }
+                    $('strong', $content).html(title)
+                    $('p', $content).html(content)
+                }
+            });
+        });
+    </script>
+}

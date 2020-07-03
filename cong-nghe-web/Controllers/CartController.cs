@@ -45,13 +45,21 @@ namespace cong_nghe_web.Controllers
                 var order = await new OrderDAO().AddOrderCustomer(customer.CustomerID, model.CustomerName, model.CustomerAddress, model.CustomerPhone, await GetTotal());
                 if (order != 0)
                 {
-                    var orderdetail = new OrderDetailDAO();
-                    foreach (var item in (List<CartSession>)Session["cart"])
+                    try
                     {
-                        await orderdetail.AddOrderDetail(order, item.ProductID, item.Quantity);
+                        var orderdetail = new OrderDetailDAO();
+                        foreach (var item in (List<CartSession>)Session["cart"])
+                        {
+                            await orderdetail.AddOrderDetail(order, item.ProductID, item.Quantity);
+                        }
+                        Session["cart"] = null;
+                        return Json(new { Success = true, ID = order }, JsonRequestBehavior.AllowGet);
                     }
-                    Session["cart"] = null;
-                    return Json(new { Success = true, ID = order }, JsonRequestBehavior.AllowGet);
+                    catch
+                    {
+                        var result = await new OrderDAO().DeleteOrder(order);
+                        return Json(new { Success = false, error = "error creating order details" }, JsonRequestBehavior.AllowGet);
+                    }
                 }
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }
@@ -71,15 +79,23 @@ namespace cong_nghe_web.Controllers
                     var order = await new OrderDAO().AddOrder(model.CustomerName, model.CustomerAddress, model.CustomerPhone, await GetTotal());
                     if (order != 0)
                     {
-                        var orderdetail = new OrderDetailDAO();
-                        foreach (var item in (List<CartSession>)Session["cart"])
+                        try
                         {
-                            await orderdetail.AddOrderDetail(order, item.ProductID, item.Quantity);
+                            var orderdetail = new OrderDetailDAO();
+                            foreach (var item in (List<CartSession>)Session["cart"])
+                            {
+                                await orderdetail.AddOrderDetail(order, item.ProductID, item.Quantity);
+                            }
+                            Session["cart"] = null;
+                            return Json(new { Success = true, ID = order }, JsonRequestBehavior.AllowGet);
                         }
-                        Session["cart"] = null;
-                        return Json(new { Success = true, ID = order }, JsonRequestBehavior.AllowGet);
+                        catch
+                        {
+                            var result = await new OrderDAO().DeleteOrder(order);
+                            return Json(new { Success = false, error = "error creating order details" }, JsonRequestBehavior.AllowGet);
+                        }
                     }
-                    return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
                 }
                 return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
             }

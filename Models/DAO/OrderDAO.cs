@@ -115,5 +115,22 @@ namespace Models.DAO
                 return 0;
             }
         }
+
+        public async Task<int> DeleteOrder(int OrderID){
+            try
+            {
+                var order = await db.ORDERs.FindAsync(OrderID);
+                if (order == null)
+                    return 0;
+
+                db.ORDERs.Remove(order);
+                await db.SaveChangesAsync();
+                return 1;
+            }
+            catch
+            {
+                    return 0;
+            }
+        }
     }
 }

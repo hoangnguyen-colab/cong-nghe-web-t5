@@ -117,40 +117,48 @@
                         <div class="payment-method mt-40">
                             <div class="payment-accordion">
                                 @*<div class="panel-group" id="faq">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true" data-parent="#faq" href="#payment-1">Direct Bank Transfer.</a></h5>
-                                        </div>
-                                        <div id="payment-1" class="panel-collapse collapse show">
-                                            <div class="panel-body">
-                                                <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true" data-parent="#faq" href="#payment-1">Direct Bank Transfer.</a></h5>
+                                            </div>
+                                            <div id="payment-1" class="panel-collapse collapse show">
+                                                <div class="panel-body">
+                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-2">Cheque Payment</a></h5>
-                                        </div>
-                                        <div id="payment-2" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                                <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-2">Cheque Payment</a></h5>
+                                            </div>
+                                            <div id="payment-2" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">PayPal</a></h5>
-                                        </div>
-                                        <div id="payment-3" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                                <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">PayPal</a></h5>
+                                            </div>
+                                            <div id="payment-3" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>*@
+                                    </div>*@
                                 <h5 class="text-center text-danger" id="checkout-info-text"></h5>
                                 <div class="order-button-payment">
                                     <input type="submit" value="Thanh toán" id="checkout-btn" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <h5 id="timer-text"></h5>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h5 id="timer"></h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -226,6 +234,17 @@
                         success: function (response) {
                             if (response.Success) {
                                 $('#checkout-btn').val("Đặt hàng thành công").css("background", "#00ff7f").css("color", "#000");
+                                    
+                                $("#timer-text").text("Trở về trang chủ sau: ");
+                                $("#timer").text("5")
+                                window.setInterval(function () {
+                                    var timeLeft = $("#timer").html();
+                                    if (eval(timeLeft) == 0) {
+                                        location.href = "@Url.Action("Index", "Home")";
+                                    } else {
+                                        $("#timer").html(eval(timeLeft) - eval(1));
+                                    }
+                                }, 1000);
                             } else {
                                 $('#checkout-btn').val("Đặt hàng thất bại").css("background", "#f51d1a");
                             }
