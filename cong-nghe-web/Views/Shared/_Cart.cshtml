@@ -1,11 +1,17 @@
 ﻿@model IEnumerable<cong_nghe_web.Models.CartItemModel>
 
-
+@{ 
+    var quantity = 0;
+    foreach (var item in Model)
+    {
+        quantity += item.quantity;
+    }
+}
 
 <div style="overflow-y: scroll;">
     <button class="icon-cart">
         <i class="ti-shopping-cart"></i>
-        <span id="123qwe" class="count-style">@Model.Count()</span>
+        <span id="123qwe" class="count-style">@quantity</span>
         <span class="count-price-add">Giỏ hàng</span>
     </button>
     <div class="shopping-cart-content">
@@ -68,7 +74,7 @@
             <div class="shopping-cart-btn">
                 @if (tongsoluong > 100)
                 {
-                    <a class="btn-style cr-btn" href="#">Giỏ hàng tối đa 100 sản phẩm, vui lòng bỏ bớt</a>
+                    <a class="btn-style cr-btn" href="javascript:void(0);">Giỏ hàng vượt quá 100 sp</a>
                 }
                 else
                 {

@@ -5,6 +5,7 @@ namespace Models.EF
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Threading.Tasks;
 
     [Table("PRODUCT")]
     public partial class PRODUCT
@@ -53,5 +54,10 @@ namespace Models.EF
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDERDETAIL> ORDERDETAILs { get; set; }
+
+        public static implicit operator Task<object>(PRODUCT v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

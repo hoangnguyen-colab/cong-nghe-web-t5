@@ -78,5 +78,20 @@ namespace cong_nghe_web.Areas.Admin.Controllers
             }
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
+        
+        [HttpPost]
+        public async Task<JsonResult> UpdateProduct(PRODUCT model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.ProductURL = SlugGenerator.SlugGenerator.GenerateSlug(model.ProductName);
+                int result = await new ProductDAO().UpdateProduct(model);
+                if (result == 0)
+                    return Json(new { Success = false, error = "result 0" }, JsonRequestBehavior.AllowGet);
+
+                return Json(new { Success = true, id = result }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Success = false, error = "model state"}, JsonRequestBehavior.AllowGet);
+        }
     }
 }

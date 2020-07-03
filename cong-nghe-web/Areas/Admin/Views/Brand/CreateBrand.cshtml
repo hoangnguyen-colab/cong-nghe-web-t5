@@ -101,8 +101,10 @@
                             data: "id=" + id,
                             success: function (response) {
                                 if (response.Success == 1) {
-                                    swal("Deleted!", "", "success");
-                                    window.location.reload();
+                                    swal("Deleted!", "", "success")
+                                        .then((value) => {
+                                            location.reload();
+                                        });
                                 } else {
                                     swal("Delete fail!", "", "error");
                                 }
@@ -133,8 +135,10 @@
                             },
                             success: function (response) {
                                 if (response.Success == 1) {
-                                    swal("Edit!", "", "success");
-                                    window.location.reload();
+                                    swal("Edit!", "", "success")
+                                        .then((value) => {
+                                            location.reload();
+                                        });
                                 } else {
                                     swal("Edit fail!", "", "error");
                                 }

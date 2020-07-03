@@ -40,6 +40,33 @@ namespace Models.DAO
             }
         }
 
+        public async Task<int> UpdateProduct(PRODUCT model)
+        {
+            var product = await db.PRODUCTs.FindAsync(model.ProductID);
+            if (product == null)
+                return 0;
+
+            product.ProductName = model.ProductName;
+            product.ProductDescription = model.ProductDescription;
+            product.ProductPrice = model.ProductPrice;
+            product.PromotionPrice = model.PromotionPrice;
+            product.ProductImage = model.ProductImage;
+            product.ProductStock = model.ProductStock;
+            product.ProductURL = model.ProductURL;
+            product.ProductStatus = model.ProductStatus;
+
+            await db.SaveChangesAsync();
+            return product.ProductID;
+            //try
+            //{
+                
+            //}
+            //catch
+            //{
+            //    return 0;
+            //}
+        }
+
         public async Task<bool> DeleteProduct(int ID)
         {
             try

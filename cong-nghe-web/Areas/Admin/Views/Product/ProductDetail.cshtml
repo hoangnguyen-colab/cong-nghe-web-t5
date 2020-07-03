@@ -11,7 +11,7 @@
     @Html.DisplayFor(model => model.ProductName) Details
 </h2>
 
-<form action="#" method="post" id="create-product-form">
+<form action="#" method="post" id="update-product-form">
     <div class="row">
         <div class="input-field col-lg-2 s12">
             <label>ID</label>
@@ -98,14 +98,13 @@
         </div>
     </div>
 
-    <h5 class="text-danger info-text"></h5>
-
     <button class="btn waves-effect waves-light" type="submit" name="action">
         <span>Save changes </span><i class="mdi mdi-send"></i>
     </button>
 </form>
 
 @section Scripts{
+    <script src="~/Areas/Admin/assets/js/sweetalert.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
     <script>
@@ -133,7 +132,7 @@
                     .replace(/-+$/, '');            // Trim - from end of text
             }
 
-            $("#create-product-form").validate({
+            $("#update-product-form").validate({
                 rules: {
                     'product-name': "required",
                     'product-price': {
@@ -152,32 +151,35 @@
                 },
                 submitHandler: function () {
                     let data = {
+                        "ProductID": "@Model.ProductID",
                         "ProductName": $("#product-name").val(),
                         "ProductPrice": $("#product-price").val(),
                         "PromotionPrice": $("#product-promotion").val(),
                         "ProductStock": $("#product-stock").val(),
-                        "BrandID": $("#select-cate").val(),
+                        "BrandID": "@Model.BrandID",
                         "ProductImage": $("#product-image").val(),
-                        "ShowImage_2": $("#show-image-2").val(),
                         "ProductDescription": $("#text-area").val(),
                         "ProductStatus": $("#status-checkbox").is(":checked")
                     };
                     $.ajax({
-                        url: "@Url.Action("CreateProduct", "Product")",
+                        url: "@Url.Action("UpdateProduct", "Product")",
                         type: "POST",
                         data: JSON.stringify(data),
                         dataType: "json",
                         contentType: "application/json",
                         success: function (response) {
+                            console.log(response);
                             if (response.Success) {
-                                $('.info-text').text("Create Success");
-                                window.location.href = "@Url.Action("ProductList", "Product")";
+                                swal("Update successfuly", "", "success")
+                                    .then((value) => {
+                                        location.reload();
+                                });
                             }
                             else
-                                $('.info-text').text("Create Fail");
+                                swal("Update fail!", "", "success");
                         },
                         error: function (error) {
-                            console.log(error);
+                            swal("Error updating product!", "", "success");
                         }
                     });
                 }
