@@ -8,11 +8,11 @@
         <thead class="thead-dark">
             <tr>
                 <th>#</th>
-                <th class="text-center">Order ID</th>
-                <th class="text-center">Total</th>
-                <th class="text-center">Order Date</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Options</th>
+                <th class="text-center">ID Đơn hàng</th>
+                <th class="text-center">Tổng tiền</th>
+                <th class="text-center">Ngày đặt hàng</th>
+                <th class="text-center">Tình Trạng</th>
+                <th class="text-center">Ghi chú</th>
             </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@
                         {
                             <button class="btn btn-danger" id="@item.OrderID"
                                     onclick="return CancelOrder('@item.OrderID')">
-                                Cancel
+                                Hủy đơn hàng
                             </button>
                         }
                     </td>
