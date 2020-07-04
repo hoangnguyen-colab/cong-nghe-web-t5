@@ -34,8 +34,8 @@
                             </div>
                             <div class="userData ml-3">
                                 <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">@Model.CustomerName</a></h2>
-                                <h6 class="d-block"><a href="javascript:void(0)">1,500</a> Product Bought</h6>
-                                <h6 class="d-block"><a href="javascript:void(0)">300</a> Orders</h6>
+                                <h6 class="d-block"><a href="javascript:void(0)">1,500</a> Sản phẩm</h6>
+                                <h6 class="d-block"><a href="javascript:void(0)">300</a> Đơn hàng</h6>
                             </div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                                 <div class="tab-pane fade" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Full Name</label>
+                                            <label style="font-weight:bold;">Họ tên</label>
                                         </div>
                                         <div class="col-md-8 col-6">
                                             @Model.CustomerName
@@ -89,10 +89,10 @@
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Username</label>
+                                            <label style="font-weight:bold;">Số điện thoại</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            @Model.CustomerUsername
+                                            @Model.CustomerPhone
                                         </div>
                                     </div>
 
@@ -107,16 +107,34 @@
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Phone</label>
+                                            <label style="font-weight:bold;">Địa chỉ</label>
                                         </div>
                                         <div class="col-md-8 col-6">
-                                            @Model.CustomerPhone
+                                            @Model.CustomerAddress
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Tài khoản</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            @Model.CustomerUsername
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Mật khẩu</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            @Model.CustomerPassword
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Created Date</label>
+                                            <label style="font-weight:bold;">Ngày tạo</label>
                                         </div>
                                         <div class="col-md-8 col-6">
                                             @Model.CreatedDate
@@ -126,7 +144,78 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="something_tab" role="tabpanel" aria-labelledby="something-tab">
-                                    Updating...
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-horizontal">
+                                            <hr />
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            @Html.HiddenFor(model => model.CustomerID)
+
+                                            <div class="form-group">
+                                                <div class="col-md-2">Họ và tên</div>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-2">Số điện thoại</div>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CustomerPhone, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CustomerPhone, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-2">Email</div>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-2">Địa chỉ</div>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CustomerAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-2">Tài khoản</div>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CustomerUsername, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CustomerUsername, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-2">Mật khẩu</div>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CustomerPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CustomerPassword, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-2">Ngày tạo</div>
+                                                <div class="col-md-10">
+                                                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                          
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="Cập nhật" class="btn btn-default" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
