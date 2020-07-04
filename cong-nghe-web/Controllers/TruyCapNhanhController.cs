@@ -9,6 +9,7 @@ namespace cong_nghe_web.Controllers
     public class TruyCapNhanhController : Controller
     {
         // GET: TruyCapNhanh
+        [Route("huong-dan")]
         public ActionResult HuongDanMuaHangOnLine()
         {
             return View();

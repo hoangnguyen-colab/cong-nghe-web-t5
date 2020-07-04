@@ -108,13 +108,17 @@ namespace cong_nghe_web.Controllers
         [HttpPost]
         public JsonResult OrderNow(int prodId, int quantity)
         {
+            if (quantity == 0)
+            {
+                return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+            }
             if (Session["cart"] == null)
             {
                 var cart = new List<CartSession>();
                 cart.Add(new CartSession(prodId, quantity));
                 Session["cart"] = cart;
 
-                return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                return Json(new { Success = true, msg = "null, add moi" }, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -123,11 +127,12 @@ namespace cong_nghe_web.Controllers
                 if (index == -1)
                 {
                     cart.Add(new CartSession(prodId, quantity));
-                    return Json(new { Success = true }, JsonRequestBehavior.AllowGet);
+                    return Json(new { Success = true, msg = "add moi" }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
+                    cart[index].Quantity += quantity;
+                    return Json(new { Success = true, msg = "them sl" }, JsonRequestBehavior.AllowGet);
                 }
             }
         }
