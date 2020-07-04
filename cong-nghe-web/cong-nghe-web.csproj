@@ -399,6 +399,7 @@
     <Content Include="Views\Shop\ConfigDetail.cshtml" />
     <Content Include="Views\Shop\SelectTop.cshtml" />
     <Content Include="Views\Cart\CheckoutCustomer.cshtml" />
+    <Content Include="Views\Date\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\assets\plugins\cropper\" />
