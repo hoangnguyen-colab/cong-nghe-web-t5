@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng nhập";
 }
 
 <link href="~/Assets/loading-spinner.css" rel="stylesheet" />
@@ -141,6 +141,7 @@
                             }
                             else
                                 $("#login-button-text").text("Login Fail");
+                                window.location.reload();
                         },
                         error: function (response) {
                             $("#login-loader").hide();

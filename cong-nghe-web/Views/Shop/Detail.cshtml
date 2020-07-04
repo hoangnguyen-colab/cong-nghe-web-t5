@@ -135,7 +135,6 @@
                     url: "@Url.Action("OrderNow", "Cart")",
                     data: {
                         prodId: @Model.ProductID,
-                        sizeId: $('#select-size').val(),
                         quantity: $('#quantity-input').val()
                     },
                     success: function (response) {
