@@ -759,9 +759,9 @@
     animation-name: fadeInLeft;
 }
 
-.owl-item.active .slider-animated-1 h2 {
-    -webkit-animation-delay: 1.4s;
-    animation-delay: 1.4s;
+.owl-item.active .slider-animated-1 h3 {
+    -webkit-animation-delay: 1.0s;
+    animation-delay: 1.0s;
     -webkit-animation-name: fadeInLeft;
     animation-name: fadeInLeft;
 }
