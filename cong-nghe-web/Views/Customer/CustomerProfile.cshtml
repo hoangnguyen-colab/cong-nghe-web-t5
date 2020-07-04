@@ -1,7 +1,7 @@
 ﻿@model Models.EF.CUSTOMER
 
 @{
-    ViewBag.Title = $"{Model.CustomerName} Profile";
+    ViewBag.Title = $"Thông tin khách hàng {Model.CustomerName}";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -107,7 +107,7 @@
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Địa chỉ</label>
+                                            <label style="font-weight:bold;">Phone</label>
                                         </div>
                                         <div class="col-md-8 col-6">
                                             @Model.CustomerAddress
@@ -117,7 +117,7 @@
 
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
-                                            <label style="font-weight:bold;">Tài khoản</label>
+                                            <label style="font-weight:bold;">Created Date</label>
                                         </div>
                                         <div class="col-md-8 col-6">
                                             @Model.CustomerUsername
@@ -144,78 +144,7 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="something_tab" role="tabpanel" aria-labelledby="something-tab">
-                                    @using (Html.BeginForm())
-                                    {
-                                        @Html.AntiForgeryToken()
-
-                                        <div class="form-horizontal">
-                                            <hr />
-                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                            @Html.HiddenFor(model => model.CustomerID)
-
-                                            <div class="form-group">
-                                                <div class="col-md-2">Họ và tên</div>
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-2">Số điện thoại</div>
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.CustomerPhone, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.CustomerPhone, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-2">Email</div>
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-2">Địa chỉ</div>
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.CustomerAddress, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-2">Tài khoản</div>
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.CustomerUsername, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.CustomerUsername, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-2">Mật khẩu</div>
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.CustomerPassword, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.CustomerPassword, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-2">Ngày tạo</div>
-                                                <div class="col-md-10">
-                                                    @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
-                                                    @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                          
-                                            <div class="form-group">
-                                                <div class="col-md-offset-2 col-md-10">
-                                                    <input type="submit" value="Cập nhật" class="btn btn-default" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
+                                    Updating...
                                 </div>
                             </div>
                         </div>
