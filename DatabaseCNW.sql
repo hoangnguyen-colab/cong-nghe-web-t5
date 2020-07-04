@@ -135,6 +135,10 @@ GO
 INSERT INTO [ADMIN]
 VALUES(N'hoang', N'4297f44b13955235245b2497399d7a93', N'Nguyễn Hoàng', GETDATE())
 GO
+                                       
+INSERT INTO [ADMIN]
+VALUES(N'quang', N'e10adc3949ba59abbe56e057f20f883e', N'Vũ Minh Quang', GETDATE())
+GO                                                       
 
 --------------------------------------------
 -- public void FixEfProviderServicesProblem()

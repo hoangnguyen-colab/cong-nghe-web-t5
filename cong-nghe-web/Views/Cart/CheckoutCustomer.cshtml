@@ -66,7 +66,7 @@
                     <div class="your-order">
                         <h3>Đơn hàng của bạn:</h3>
                         <div class="your-order-table table-responsive">
-                            @{ decimal total = 0, subtotal = 0; }
+                            @{ int tongsp = 0; decimal total = 0, subtotal = 0; }
                             <table>
                                 <thead>
                                     <tr>
@@ -86,6 +86,7 @@
                                             <td class="product-total">
                                                 @if (item.product.PromotionPrice.HasValue)
                                                 {
+                                                    tongsp = tongsp + item.quantity;
                                                     subtotal = (item.product.PromotionPrice.Value * item.quantity);
                                                     total += subtotal;
                                                     <span class="amount">
@@ -94,6 +95,7 @@
                                                 }
                                                 else
                                                 {
+                                                    tongsp = tongsp + item.quantity;
                                                     subtotal = (item.product.ProductPrice * item.quantity);
                                                     total += subtotal;
                                                     <span class="amount">
@@ -117,49 +119,62 @@
                         <div class="payment-method mt-40">
                             <div class="payment-accordion">
                                 @*<div class="panel-group" id="faq">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true" data-parent="#faq" href="#payment-1">Direct Bank Transfer.</a></h5>
-                                            </div>
-                                            <div id="payment-1" class="panel-collapse collapse show">
-                                                <div class="panel-body">
-                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-2">Cheque Payment</a></h5>
-                                            </div>
-                                            <div id="payment-2" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">PayPal</a></h5>
-                                            </div>
-                                            <div id="payment-3" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>*@
-                                <h5 class="text-center text-danger" id="checkout-info-text"></h5>
-                                <div class="order-button-payment">
-                                    <input type="submit" value="Thanh toán" />
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <h5 id="timer-text"></h5>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title"><a data-toggle="collapse" aria-expanded="true" data-parent="#faq" href="#payment-1">Direct Bank Transfer.</a></h5>
+                </div>
+                <div id="payment-1" class="panel-collapse collapse show">
+                    <div class="panel-body">
+                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-2">Cheque Payment</a></h5>
+                </div>
+                <div id="payment-2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="panel-title"><a class="collapsed" data-toggle="collapse" aria-expanded="false" data-parent="#faq" href="#payment-3">PayPal</a></h5>
+                </div>
+                <div id="payment-3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                                @if (tongsp > 100)
+                                {
+                                    <div >
+
+                                        <input border="" type="text" value="Giỏ hàng chứa tối đa 100 sản phẩm, không thể thanh toán" disabled/>
+
                                     </div>
-                                    <div class="col-sm-2">
-                                        <h5 id="timer"></h5>
+                                }
+                                else
+                                {
+                                    <h5 class="text-center text-danger" id="checkout-info-text"></h5>
+                                    <div class="order-button-payment">
+
+                                        <input type="submit" value="Thanh toán" />
+
                                     </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h5 id="timer-text"></h5>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h5 id="timer"></h5>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,8 @@
     ViewBag.Title = "Cart";
 }
 
+
+
 <div class="breadcrumb-area pt-255 pb-170" style="background-image: url(/Assets/img/slider/bg1.jpg)">
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
@@ -69,7 +71,10 @@
                                         </td>
                                         <td class="product-quantity text-center">
                                             <span class="amount">
-                                                @item.quantity
+                                                @*@item.quantity*@
+
+                                                <input type="number" value="@item.quantity" >
+                                            
                                             </span>
                                         </td>
                                         @if (item.product.PromotionPrice.HasValue)
@@ -143,7 +148,7 @@
                     <div class="cart-btn text-center mb-15">
                         @if(tongsl > 100)
                         {
-                        <a href="#">Giỏ hàng tối đa 100 sản phẩm, vui lòng bỏ bớt</a>
+                        <a href="javascript:void(0)">Giỏ hàng tối đa 100 sản phẩm, vui lòng bỏ bớt</a>
                         }
                         else
                         {

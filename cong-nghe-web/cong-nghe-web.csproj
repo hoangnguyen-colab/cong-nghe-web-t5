@@ -137,6 +137,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\TruyCapNhanhController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -400,6 +401,7 @@
     <Content Include="Views\Shop\SelectTop.cshtml" />
     <Content Include="Views\Cart\CheckoutCustomer.cshtml" />
     <Content Include="Views\Date\Index.cshtml" />
+    <Content Include="Views\TruyCapNhanh\HuongDanMuaHangOnLine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\assets\plugins\cropper\" />

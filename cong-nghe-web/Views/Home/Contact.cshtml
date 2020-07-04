@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Liên hệ";
 }
 
 
@@ -7,12 +7,12 @@
 <div class="breadcrumb-area pt-255 pb-170" >
     <div class="container-fluid">
         <div class="breadcrumb-content text-center">
-            <h2>Contact Us</h2>
+            <h2>Liên hệ</h2>
             <ul>
                 <li>
                     <a href="@Url.Action("About", "Home")">home</a>
                 </li>
-                <li>Contact Us</li>
+                <li>Liên hệ</li>
             </ul>
         </div>
     </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="communication-text">
                                     <h4>Email:</h4>
-                                    <p><a href="#">vmquang95@gmail.com</a></p>
+                                    <p><a href="javascript:void(0)">vmquang95@gmail.com</a></p>
                                 </div>
                             </div>
                             <div class="single-communication">
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="communication-text">
                                     <h4>Website:</h4>
-                                    <p><a href="#">https://hhq.com.vn</a></p>
+                                    <p><a href="@Url.Action("Index", "Home")">https://hhq.com.vn</a></p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                                     <div class="col-lg-12">
                                         <div class="contact-form-style">
                                             <textarea name="message" placeholder="nội dung"></textarea>
-                                            <button class="submit cr-btn btn-style" type="submit"><span>GỬI</span></button>
+                                            <button class="submit cr-btn btn-style" type="submit" ><span>GỬI</span></button>
                                         </div>
                                     </div>
                                 </div>
